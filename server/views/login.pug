@@ -4,14 +4,15 @@ extends layout
 block content
 	#login.center-vertical
 		form.card.card-body.bg-light(method='post')
-			h2 Hello!
-			h6 Please Login To Your Account
+			h3 
+				strong Sign in to your account 
+			
 			.form-group
-				label Username
-				input.form-control(type='text', id='user-tf', name='user')
+				
+				input.form-control(type='text', id='user-tf', name='user',placeholder='username')
 			.form-group
-				label Password
-				input.form-control(type='password', id='pass-tf', name='pass')
+				
+				input.form-control(type='password', id='pass-tf', name='pass',placeholder='password')
 			#row1
 				button(type='button')#btn_remember.btn.btn-light.btn-left
 					span.fa.fa-check-square
