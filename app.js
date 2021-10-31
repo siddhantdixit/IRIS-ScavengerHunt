@@ -7,7 +7,7 @@ const morgan = require('morgan');
  **/
 
 //	https://www.npmjs.com/package/@braitsch/express
-const express = require('@braitsch/express');
+const express = require('./express');
 
 const app = express();
 app.use(morgan("dev"));
