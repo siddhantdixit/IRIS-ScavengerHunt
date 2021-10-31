@@ -4,7 +4,7 @@ extends layout
 block content
 	#login.center-vertical
 		form.card.card-body.bg-light(method='post')
-			h3 
+			h3(style='padding-bottom:0.5em') 
 				strong Sign in to your account 
 			
 			.form-group
@@ -21,11 +21,11 @@ block content
 					span.fa.fa-lock
 					| Sign In
 			hr
-			.btm-links
+			.btm-links(style='color:#4f46e5 !important;') 
 				#forgot-password
-					a(href='#') Forgot Your Password?
+					a(href='#',style='color:#4f46e5 !important;') Forgot Your Password?
 				#create-account
-					a(href='/signup') Create An Account
+					a(href='/signup',style='color:#4f46e5 !important;') Create An Account
 
 	include modals/alert
 	include modals/lost-password
