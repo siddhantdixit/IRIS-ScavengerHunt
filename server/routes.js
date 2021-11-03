@@ -6,6 +6,15 @@ const countries = require('./json/countries');
 module.exports = function(app) {
 
 /*
+
+*/
+
+	app.get('/level',(req,res)=>{
+		res.render('level/base');
+	});
+
+
+/*
 	login & logout
 */
 
