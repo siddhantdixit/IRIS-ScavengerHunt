@@ -53,6 +53,7 @@ $('.point').on('click', function(e) {
 
 /*
   Demo Purposes
+  For automating animation on click
 */
 var progressAnimation = function() {
   var getTotalPoints = $('.point').length,

@@ -1,12 +1,5 @@
 const morgan = require('morgan');
 
-/**
- * Node.js Login Boilerplate
- * https://node-login.braitsch.io
- * (c) 2013-2021 Stephen Braitsch
- **/
-
-//	https://www.npmjs.com/package/@braitsch/express
 const express = require('./express');
 
 const app = express();
