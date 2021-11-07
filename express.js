@@ -98,13 +98,13 @@ module.exports.start = function(app)
 
 	if (http === undefined) http = require('http').createServer(app);
 
-	http.listen(process.env.PORT, function () {
-		console.log('* http service listening on port', app.get('http_port'));
+	http.listen(process.env.PORT||80, function () {
+		console.log('* http service listening on port', process.env.PORT||80);
 	});
 
 	if (https){
-		https.listen(process.env.PORT, function(){
-			console.log('* https service listening on port', https.address().port);
+		https.listen(process.env.PORT||80, function(){
+			console.log('* https service listening on port', process.env.PORT||80);
 		});
 	}
 
