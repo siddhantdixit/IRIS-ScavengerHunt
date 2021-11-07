@@ -9,6 +9,6 @@ express.log('./logs');
 
 express.http(app);
 
-express.init(__dirname, app, 'node-login', true);
+express.init(__dirname, app, 'IRIS-Project', true);
 
 express.start(app);

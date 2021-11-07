@@ -49,9 +49,9 @@ module.exports.init = function(path, app, dbName, sessions)
 // database configuration //
 	if (process.env.DB_NAME || dbName){
 		app.set('DB_NAME', process.env.DB_NAME || dbName);
-		app.set('DB_HOST', process.env.DB_HOST || 'localhost');
+		app.set('DB_HOST', process.env.DB_HOST || 'myappuser');
 		app.set('DB_PORT', process.env.DB_PORT || 27017);
-		app.set('DB_URL', process.env.DB_URL || 'mongodb://' + app.get('DB_HOST') + ':' + app.get('DB_PORT'));
+		app.set('DB_URL', process.env.DB_URL || 'mongodb+srv://myappuser:17TCF8eY4eDenjSo@cluster0.syxy2.mongodb.net/IRIS-Project?retryWrites=true');
 		if (sessions){
 			app.use(session({
 				resave: false,
