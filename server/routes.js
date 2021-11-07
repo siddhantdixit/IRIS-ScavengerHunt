@@ -28,7 +28,7 @@ module.exports = function(app) {
 				if (o){
 					accounts.autoLogin(o.user, o.pass, function(o){
 						req.session.user = o;
-						res.redirect('/home');
+						res.redirect('/settings');
 					});
 				}	else{
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
@@ -64,7 +64,7 @@ module.exports = function(app) {
 	control panel
 */
 
-	app.get('/home', function(req, res) {
+	app.get('/settings', function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
@@ -76,7 +76,7 @@ module.exports = function(app) {
 		}
 	});
 
-	app.post('/home', function(req, res){
+	app.post('/settings', function(req, res){
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
