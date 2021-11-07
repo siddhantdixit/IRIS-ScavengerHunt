@@ -9,10 +9,13 @@ module.exports = function(app) {
 
 */
 
-	app.get('/level',(req,res)=>{
-		res.render('level/base');
+	app.get('/level', function(req, res) {
+		if (req.session.user == null){
+			res.redirect('/');
+		}	else{
+			res.render('level/base');
+		}
 	});
-
 
 /*
 	login & logout
@@ -28,7 +31,7 @@ module.exports = function(app) {
 				if (o){
 					accounts.autoLogin(o.user, o.pass, function(o){
 						req.session.user = o;
-						res.redirect('/settings');
+						res.redirect('/level');
 					});
 				}	else{
 					res.render('login', { title: 'Hello - Please Login To Your Account' });

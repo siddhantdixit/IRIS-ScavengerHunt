@@ -17,7 +17,7 @@ $(document).ready(function(){
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') window.location.href = '/settings';
+			if (status == 'success') window.location.href = '/level';
 		},
 		error : function(e){
 			lv.showLoginError('Login Failure', 'Please check your username and/or password');
