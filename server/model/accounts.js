@@ -54,10 +54,10 @@ module.exports.generateLoginKey = function(user, ipAddress, callback)
 	});
 }
 
-module.exports.validateLoginKey = function(cookie, ipAddress, callback)
+module.exports.validateLoginKey = function(cookie, callback)
 {
 // ensure the cookie maps to the user's last recorded ip address //
-	accounts.findOne({cookie:cookie, ip:ipAddress}, callback);
+	accounts.findOne({cookie:cookie}, callback);
 }
 
 module.exports.generatePasswordKey = function(email, ipAddress, callback)

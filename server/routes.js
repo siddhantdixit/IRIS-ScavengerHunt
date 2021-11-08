@@ -30,7 +30,7 @@ module.exports = function(app) {
 		}	else{
 	// attempt automatic login //
 			console.log("==== 3. Auto Login Started ====");
-			accounts.validateLoginKey(req.cookies.login, req.ip, function(e, o){
+			accounts.validateLoginKey(req.cookies.login, function(e, o){
 				if (o){
 					console.log("==== 4. IF O Passed ====");
 					accounts.autoLogin(o.user, o.pass, function(o){
