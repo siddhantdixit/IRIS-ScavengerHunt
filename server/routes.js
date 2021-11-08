@@ -23,17 +23,24 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res){
 	// check if the user has an auto login key saved in a cookie //
+	console.log("==== 1. / Called ====");
 		if (req.cookies.login == undefined){
+			console.log("==== 2. LOGIN Redirect ====");
 			res.render('login', { title: 'Hello - Please Login To Your Account' });
 		}	else{
 	// attempt automatic login //
+			console.log("==== 3. Auto Login Started ====");
 			accounts.validateLoginKey(req.cookies.login, req.ip, function(e, o){
 				if (o){
+					console.log("==== 4. IF O Passed ====");
 					accounts.autoLogin(o.user, o.pass, function(o){
 						req.session.user = o;
+						console.log("==== 5. LEVEL Redirect ====");
 						res.redirect('/level');
 					});
-				}	else{
+				}	
+				else{
+					console.log("==== 6. LOGIN Redirect ====");
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
 				}
 			});
