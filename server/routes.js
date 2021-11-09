@@ -16,14 +16,14 @@ module.exports = function(app) {
 			res.render('level/base');
 		}
 	});
-	app.get('/level', function(req, res) {
+	app.get('/question_image', function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
 			res.render('level/question_image');
 		}
 	});
-	app.get('/level', function(req, res) {
+	app.get('/question_audio', function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
