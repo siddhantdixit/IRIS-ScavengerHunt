@@ -1,6 +1,7 @@
 
 const accounts = require('./model/accounts');
 const questions = require('./model/questions');
+const userQuestions = require('./model/userquestions');	
 const emailjs = require('./utils/emailjs');
 const countries = require('./json/countries');
 
@@ -9,6 +10,9 @@ module.exports = function(app) {
 /*
 
 */
+	app.set('json spaces', 2);
+
+
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){
 			console.log(qns);
@@ -17,20 +21,107 @@ module.exports = function(app) {
 	});
 
 	app.get('/questionByID',function(req,res){
-		questions.getQuesById('61897b9dcd15f53858eba6c7',function(e,qns){
+		questions.getQuesById('618ac9d625524d662c55bbba',function(e,qns){
+			if(qns)
+			{
+				res.send(qns);
+			}
+			else
+			{
+				res.sendStatus(404);
+			}
+		});
+	});
+
+	app.get('/userQuestionsData',function(req,res){
+		 userQuestions.getAllUsersData( function(e, qns){
+			console.log(qns);
+			res.send(qns);
+		});
+	});
+
+	app.get('/userQuestionsDataByID',function(req,res){
+		//Get User Question Data by His ID
+		userQuestions.getUserQuestionDataByID("6187b1871dd9a35738b95e19",function(e, qns){
 			console.log(qns);
 			res.send(qns);
 		});
 	});
 
 
-	app.get('/level', function(req, res) {
+
+
+	app.get('/level', async function(req, res) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
-			res.render('level/base');
+			const lvldat = await getLevelData(req,res);
+			if(lvldat=='completed')
+			{
+				res.send('Game Completed');
+			}
+			else if(lvldat)
+			{
+				res.send(lvldat);
+			}
+			else
+			{			
+				res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
+			}
+			console.log("AFTER Level Data LINE ");
+			// res.render('level/base');
 		}
 	});
+
+	function getLevelData(req,res)
+	{
+		return new Promise(resolve=>{
+		try {
+			
+			let level_data = {};
+
+			let userID = req.session.user._id;
+			userQuestions.getUserQuestionDataByID(userID,function(e, userdat){
+				if(userdat)
+				{
+					let gameCompleted = userdat.game_completed;
+					if(gameCompleted)
+					{
+						resolve('completed');
+					}
+					else
+					{
+						let currentLvl = userdat.current_level.toString();
+
+						let currentQuestionId =  userdat.questions[currentLvl]['question_id'];
+
+						questions.getQuesById(currentQuestionId,function(e,qdata){
+							if(qdata)
+							{
+								console.log(qdata);
+								level_data.currentLvl = currentLvl;
+								level_data.qdata = qdata;
+								resolve(level_data);
+							}
+							else
+							{
+								resolve(false);
+							}
+						});
+					}					
+				}
+				else
+				{
+					resolve(false);
+				}
+				
+			});
+		} catch (error) {
+			console.log(error);
+			resolve(false);
+		}
+	});
+}
 
 /*
 	login & logout

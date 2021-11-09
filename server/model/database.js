@@ -11,6 +11,7 @@ module.exports = function(app) {
 		// initialize all of your database collections here //
 			require('./accounts').init(db);
 			require('./questions').init(db);
+			require('./userquestions').init(db);
 			log('mongo :: connected to database :: "'+app.get('DB_NAME')+'"');
 		}
 	});
