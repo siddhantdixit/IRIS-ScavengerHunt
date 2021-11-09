@@ -1,5 +1,6 @@
 
 const accounts = require('./model/accounts');
+const questions = require('./model/questions');
 const emailjs = require('./utils/emailjs');
 const countries = require('./json/countries');
 
@@ -8,6 +9,20 @@ module.exports = function(app) {
 /*
 
 */
+	app.get('/questions',function(req,res){
+		questions.getAllQues( function(e, qns){
+			console.log(qns);
+			res.send(qns);
+		});
+	});
+
+	app.get('/questionByID',function(req,res){
+		questions.getQuesById('61897b9dcd15f53858eba6c7',function(e,qns){
+			console.log(qns);
+			res.send(qns);
+		});
+	});
+
 
 	app.get('/level', function(req, res) {
 		if (req.session.user == null){
@@ -33,6 +48,7 @@ module.exports = function(app) {
 			accounts.validateLoginKey(req.cookies.login, function(e, o){
 				if (o){
 					console.log("==== 4. IF O Passed ====");
+					console.log(o);
 					accounts.autoLogin(o.user, o.pass, function(o){
 						req.session.user = o;
 						console.log("==== 5. LEVEL Redirect ====");
@@ -78,6 +94,8 @@ module.exports = function(app) {
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
+			console.log(`============= SETTINGS ======== Session `);
+			console.log(req.session.user);
 			res.render('home', {
 				title : 'Control Panel',
 				countries : countries,

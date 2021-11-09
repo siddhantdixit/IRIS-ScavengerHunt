@@ -10,6 +10,7 @@ module.exports = function(app) {
 			const db = client.db(app.get('DB_NAME'));
 		// initialize all of your database collections here //
 			require('./accounts').init(db);
+			require('./questions').init(db);
 			log('mongo :: connected to database :: "'+app.get('DB_NAME')+'"');
 		}
 	});
