@@ -20,10 +20,16 @@ module.exports.getAllQues = function(callback)
 
 module.exports.getQuesById = function(qid,callback)
 {
-    questions.findOne(ObjectId(qid),function(e, res) {
-        if (e) callback(e)
-        else callback(null, res)
-    });
+	try {
+
+		questions.findOne(ObjectId(qid),function(e, res) {
+			if (e) callback(e)
+			else callback(null, res)
+		});
+		
+	} catch (error) {
+		callback(error);
+	}
 }
 
 
