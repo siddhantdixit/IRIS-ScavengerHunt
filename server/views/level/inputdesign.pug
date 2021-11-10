@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="h-full bg-gray-50" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/level2/game_style.css">
+    <link rel="stylesheet" href="css/tailwind/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body class="h-full">
+    <div class="container">
+
+        <form class="quiz">
+            <div class="quiz__inner">
+                <div data-question="1" class="quiz__step--1 quiz__step--current quiz__step">
+                    <div class="question__emoji">🏙️ </div>
+                        <h1 class="quiz__question">What is the capital?</h1>
+
+                        <div class="container mx-auto">
+                        <form class="flex w-full max-w-sm mx-auto space-x-3">
+                        <input class="flex-1 appearance-none border border-transparent w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-md rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="email" placeholder="Your Answer">
+                        <button class="flex-shrink-0 bg-purple-600 text-white text-base font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="button">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </form>
+    </div>
+        </div>
+    <div data-question="2" class="quiz__step--2 quiz__step">
+        <div class="question__emoji">🍕</div>
+            <h1 class="quiz__question">Do you like pizza?</h1>
+            <div class="answer">
+                <input  class="answer__input" type="radio" id="pizza_yes" name="pizza" value="Yes">
+                <label  class="answer__label" for="pizza_yes">Yes</label>
+            </div>
+            <div class="answer">
+                <input class="answer__input" type="radio" id="pizza_no" name="pizza" value="No">
+                <label class="answer__label" for="pizza_no">No<div class="answer__tick">
+            <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
+            </svg>
+</div></label>
+    </div>       
+        </div>
+<div data-question="3" class="quiz__step--3 quiz__step">
+    <div class="question__emoji">👽</div>
+        <h1 class="quiz__question">Do you believe in aliens?</h1>
+        <div class="answer">
+            <input  class="answer__input" type="radio" id="aliens_yes" name="aliens" value="Yes">
+            <label  class="answer__label" for="aliens_yes">Yes</label>
+        </div>
+        <div class="answer">
+            <input class="answer__input" type="radio" id="aliens_no" name="aliens" value="No">
+            <label class="answer__label" for="aliens_no">No<div class="answer__tick">
+            <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
+            </svg>
+</div></label>
+    </div> 
+
+        </div>
+<div data-question="4" class="quiz__step--4 quiz__step quiz__summary">
+
+    <h1 class="quiz__question">Summary</h1>
+    <div id="summary"></div>
+        <div class="submit__container">
+    <a href="#" class="submit">Submit</a>
+        </div> 
+        </div>
+            </div>
+    </form>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
