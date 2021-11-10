@@ -11,11 +11,11 @@ body {
 
 .boxes {
   position: fixed;
-  top: 110px;
+  top: 100px;
   left: 50%;
   width: 90%;
   max-width: 790px;
-  height: 140px;
+  height: 115px;
   font-family: "Open Sans", sans-serif;
   transform: translate(-50%, -50%);
 }
