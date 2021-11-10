@@ -113,7 +113,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px #50c03e;
 }
 .point--active .bullet {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #bd8044;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #7c3aed;
 }
 
 .label {
