@@ -1,3 +1,4 @@
+const moment 		= require('moment');
 const { ObjectId } = require("bson");
 
 let userQuestions = undefined;
@@ -26,4 +27,33 @@ module.exports.getUserQuestionDataByID = function(qid,callback)
     });
 }
 
+module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userId,levelNo,callback) 
+{
+	console.log("1   updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
+	let total_levels = 3;
+	let questionBoolIndex = `questions.${levelNo}.done`;
+	let questionTimeIndex = `questions.${levelNo}.timestamp`;
+	let myquery = {'user_id':ObjectId(userId)};
+	let newvalues = { 
+		$set:{
+			[questionBoolIndex]:true,
+			[questionTimeIndex]:moment().format('MMMM Do YYYY, h:mm:ss a')
+		}
+	};
+	console.log("2   updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
+	if(total_levels == parseInt(levelNo))
+	{
+		newvalues['$set']['game_completed'] = true;
+	}
+	else
+	{
+		newvalues['$set']['current_level'] = parseInt(levelNo)+1;
+	}
+	console.log("3 updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
+	console.log(newvalues);
+	userQuestions.updateOne(myquery,newvalues,function(e,res){
+		if(e) callback(e)
+		else callback(null,res)
+	});
+}
 

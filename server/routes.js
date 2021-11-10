@@ -73,6 +73,71 @@ module.exports = function(app) {
 		}
 	});
 
+
+	app.post('/level',async function(req,res){
+		
+		if (req.session.user == null){
+			res.redirect('/');
+		}	else{
+			if(req.body.answer)
+			{
+				let entered_answer = req.body.answer.toString().toLowerCase().trim();
+				const lvldat = await getLevelData(req,res);
+				if(lvldat=='completed')
+				{
+					res.send('Game Completed');
+				}
+				else if(lvldat)
+				{
+					if(entered_answer==lvldat.qdata.answer.toLowerCase())
+					{
+						const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
+						if(myout.result.ok == 1)
+						{
+							res.send({"msg":"YES"});
+						}
+						else
+						{
+							res.send({"msg":"Something Went Wrong try again!"});
+						}
+					}
+					else
+					{
+						res.send({"msg":"NO"});
+					}
+				}
+				else
+				{			
+					res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
+				}
+				console.log("AFTER Level Data LINE ");
+			// res.render('level/base');
+			}
+			else
+			{
+				res.status(404).send({"msg":"We need answer to verify"});
+			}
+		}
+	});
+
+
+	function makeAnswerCorrectAndUpdateLevel(levelNo,req,res)
+	{
+		return new Promise(resolve=>{
+
+			try {
+				let userID = req.session.user._id;
+				console.log("makeAnswerCorrectAndUpdateLevel ----> ");
+				userQuestions.updateUserQuestionDoneAddTimeStampIncrementLevel(userID,levelNo,function(e,data){
+					resolve(data);
+				});
+
+			} catch (error) {
+				resolve(error);
+			}
+		});
+	}
+
 	function getLevelData(req,res)
 	{
 		return new Promise(resolve=>{
