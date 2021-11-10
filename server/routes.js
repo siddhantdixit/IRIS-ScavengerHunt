@@ -12,7 +12,7 @@ module.exports = function(app) {
 */
 	app.set('json spaces', 2);
 	app.get('/mylevel',function(req,res){
-		res.render('level/inputdesign');
+		res.render('level/base');
 	});
 
 
