@@ -14,8 +14,11 @@ module.exports = function(app) {
 	app.get('/mylevel',function(req,res){
 		res.render('level/base');
 	});
-
-
+    
+	app.get('/mylevel_image',function(req,res){
+		res.render('level/base_image');
+	});
+    
 
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){
