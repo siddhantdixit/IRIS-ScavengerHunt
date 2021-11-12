@@ -386,14 +386,31 @@ module.exports = function(app) {
 			user 	: req.body['user'],
 			pass	: req.body['pass'],
 			country : req.body['country']
-		}, function(e){
+		}, function(e,result){
 			if (e){
 				res.status(400).send(e);
 			}	else{
-				res.status(200).send('ok');
+				console.log("_______NEW USER CREATED_______");
+				console.log(result.insertedId);
+				userQuestions.insertNewlyRegisteredUserDataSampleData(result.insertedId,function(error,result){
+					if(error) 
+					{
+						console.log(error);
+						res.status(400).send(error);
+					}
+					else
+					{
+						res.status(200).send('ok');
+					}
+				});
 			}
 		});
 	});
+
+
+		// userQuestions.i)nsertNewlyRegisteredUserDataSampleData('USERID',function(msg){
+	// 	console.log(msg);
+	// });
 
 /*
 	password reset

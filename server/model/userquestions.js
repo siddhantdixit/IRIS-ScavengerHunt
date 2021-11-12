@@ -68,3 +68,35 @@ module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userI
 	}
 }
 
+module.exports.insertNewlyRegisteredUserDataSampleData = function(userId,callback)
+{
+	try{
+		let sampledata = {
+			user_id:userId,
+			current_level:1,
+			game_completed:false,
+			questions:{
+				1:{
+					question_id:ObjectId('618ac61d25524d662c55bbb9'),
+					done:false
+				},
+				2:{
+					question_id:ObjectId('61897a6371fd9577fc7e335f'),
+					done:false
+				},
+				3:{
+					question_id:ObjectId('618ac9d625524d662c55bbba'),
+					done:false
+				},
+			}
+		};
+		userQuestions.insertOne(sampledata,function(err,res){
+			console.log(err);
+			callback(err,res);
+		});
+
+	}catch(error)
+	{
+		callback(error);
+	}
+}
