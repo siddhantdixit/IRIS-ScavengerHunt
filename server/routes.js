@@ -11,6 +11,20 @@ module.exports = function(app) {
 
 */
 	app.set('json spaces', 2);
+
+	app.get('/qtext',function(req,res){
+		res.render('qtypes/qtext');
+	});
+
+	app.get('/qimage',function(req,res){
+		res.render('qtypes/qimage');
+	});
+
+	app.get('/qaudio',function(req,res){
+		res.render('qtypes/qaudio');
+	});
+
+
 	app.get('/mylevel',function(req,res){
 		res.render('level/base');
 	});
