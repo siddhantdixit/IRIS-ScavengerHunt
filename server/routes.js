@@ -124,7 +124,7 @@ module.exports = function(app) {
 					}
 					res.render('qtypes/qtext',template_data);
 				}
-				if(lvldat.qdata.type == 'image')
+				else if(lvldat.qdata.type == 'image')
 				{
 					let template_data = {
 						current_level:lvldat.currentLvl,
@@ -134,7 +134,7 @@ module.exports = function(app) {
 					res.render('qtypes/qimage',template_data);
 					
 				}
-				if(lvldat.qdata.type == 'audio')
+				else if(lvldat.qdata.type == 'audio')
 				{
 					let template_data = {
 						current_level:lvldat.currentLvl,
