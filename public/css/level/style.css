@@ -2,6 +2,10 @@ body {
   background: #f7f8fc;
 }
 
+a{
+  -webkit-tap-highlight-color: transparent;;
+}
+
 .squares {
   position: fixed;
   top: 50%;
