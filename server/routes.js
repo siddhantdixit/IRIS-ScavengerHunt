@@ -481,11 +481,11 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/reset', function(req, res) {
-		accounts.deleteAllAccounts(function(){
-			res.redirect('/print');
-		});
-	});
+	// app.get('/reset', function(req, res) {
+	// 	accounts.deleteAllAccounts(function(){
+	// 		res.redirect('/print');
+	// 	});
+	// });
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
