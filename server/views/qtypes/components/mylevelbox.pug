@@ -16,7 +16,13 @@ mixin levelbox(currentlevel)
                     <div class="bullet"></div>
                     <label class="label">#{n}</label>
                 </div>
-            if n==currentlevel
+            
+            if n==currentlevel && gamecompleted==true
+                <div class="point point--complete">
+                    <div class="bullet"></div>
+                    <label class="label">#{n}</label>
+                </div>
+            else if n==currentlevel
                 <div class="point point--active">
                     <div class="bullet"></div>
                     <label class="label">#{n}</label>
