@@ -110,7 +110,8 @@ module.exports = function(app) {
 			const lvldat = await getLevelData(req,res);
 			if(lvldat=='completed')
 			{
-				res.send('Game Completed');
+				// res.send('Game Completed');
+				res.render('qtypes/qcompleted',{current_level:3});
 			}
 			else if(lvldat)
 			{
@@ -171,7 +172,7 @@ module.exports = function(app) {
 				const lvldat = await getLevelData(req,res);
 				if(lvldat=='completed')
 				{
-					res.send('Game Completed');
+					res.render('qtypes/qcompleted',{current_level:3});
 				}
 				else if(lvldat)
 				{
