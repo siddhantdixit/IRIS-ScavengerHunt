@@ -20,6 +20,10 @@ module.exports = function(app) {
 	});
     
 
+	app.get('/mylevel_audio',function(req,res){
+		res.render('level/base_audio');
+	});
+
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){
 			console.log(qns);
@@ -46,6 +50,8 @@ module.exports = function(app) {
 			res.send(qns);
 		});
 	});
+
+
 
 	app.get('/userQuestionsDataByID',function(req,res){
 		//Get User Question Data by His ID
