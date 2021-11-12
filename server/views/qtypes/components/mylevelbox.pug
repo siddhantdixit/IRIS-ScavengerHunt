@@ -1,28 +1,32 @@
 mixin levelbox(currentlevel)
+    - var totallevel = 4
     <div class="boxes">
     <div class="box"></div>
     <div class="box"></div>
     <div class="box">
         <div class="progress">
         <div class="bar">
-            <div class="bar__fill" style="width: 33%"></div>
+        - var barwidth = (100/(totallevel-1))*(currentlevel-1)
+            <div class="bar__fill" style="width: #{barwidth}%"></div>
         </div>
-        <div class="point point--complete">
-            <div class="bullet"></div>
-            <label class="label">1</label>
-        </div>
-        <div class="point point--active">
-            <div class="bullet"></div>
-            <label class="label">2</label>
-        </div>
-        <div class="point">
-            <div class="bullet"></div>
-            <label class="label">3</label>
-        </div>
-        <div class="point">
-            <div class="bullet"></div>
-            <label class="label">4</label>
-        </div>
+        - var n = 1
+        while n <= totallevel
+            if n<currentlevel
+                <div class="point point--complete">
+                    <div class="bullet"></div>
+                    <label class="label">#{n}</label>
+                </div>
+            if n==currentlevel
+                <div class="point point--active">
+                    <div class="bullet"></div>
+                    <label class="label">#{n}</label>
+                </div>
+            if n>currentlevel
+                <div class="point">
+                    <div class="bullet"></div>
+                    <label class="label">#{n}</label>
+                </div>
+            - n++
         </div>
     </div>
     </div>

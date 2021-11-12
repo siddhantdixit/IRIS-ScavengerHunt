@@ -32,7 +32,7 @@ boxThree.to($boxThree, 0.6, {
 
 /**
  * Point Animation
- */
+
 $('.point').on('click', function(e) {
   var getTotalPoints = $('.point').length,
     getIndex = $(this).index(),
@@ -50,7 +50,7 @@ $('.point').on('click', function(e) {
     $(this).nextAll().removeClass('point--complete');
   }
 });
-
+ */
 /*
   Demo Purposes
   For automating animation on click

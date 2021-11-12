@@ -4,6 +4,7 @@ const questions = require('./model/questions');
 const userQuestions = require('./model/userquestions');	
 const emailjs = require('./utils/emailjs');
 const countries = require('./json/countries');
+const { url } = require('stylus');
 
 module.exports = function(app) {
 
@@ -113,7 +114,41 @@ module.exports = function(app) {
 			}
 			else if(lvldat)
 			{
-				res.send(lvldat);
+				// res.send(lvldat);
+				if(lvldat.qdata.type == 'text')
+				{
+					let template_data = {
+						current_level:lvldat.currentLvl,
+						heading_content:lvldat.qdata.text,
+						text_content: lvldat.qdata.content.paragraph
+					}
+					res.render('qtypes/qtext',template_data);
+				}
+				if(lvldat.qdata.type == 'image')
+				{
+					let template_data = {
+						current_level:lvldat.currentLvl,
+						heading_content:lvldat.qdata.text,
+						image_url:lvldat.qdata.content['image-url']
+					}
+					res.render('qtypes/qimage',template_data);
+					
+				}
+				if(lvldat.qdata.type == 'audio')
+				{
+					let template_data = {
+						current_level:lvldat.currentLvl,
+						heading_content:lvldat.qdata.text,
+						audio1_url: lvldat.qdata.content['audio1-url'],
+						audio2_url: lvldat.qdata.content['audio2-url'],
+						audio3_url: lvldat.qdata.content['audio3-url']
+					}
+					res.render('qtypes/qaudio',template_data);
+				}
+				else
+				{
+					res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
+				}
 			}
 			else
 			{			
