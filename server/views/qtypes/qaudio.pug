@@ -14,17 +14,16 @@ html(lang="en")
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
         title Level #{current_level}
     body
-        +levelbox(1)
+        +levelbox(current_level)
 
         div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-             p(style='font-weight:900;letter-spacing:1px;font-size:20px').
-               “Greetings of the day, hunters. Get ready as the treasure awaits you. The intense search has now begun. All the best!”
+             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
              
         //-audio player
         <div class = "container">
             <div class="gap-example">
                 <audio controls>
-                    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav" type="audio/wav">
+                    <source src=#{audio1_url} type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
             </div>
@@ -32,7 +31,7 @@ html(lang="en")
         <div class = "container">
             <div class="gap-example">
                 <audio controls>
-                    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav" type="audio/wav">
+                    <source src=#{audio2_url} type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
             </div>
@@ -40,7 +39,7 @@ html(lang="en")
         <div class = "container">
             <div class="gap-example">
                 <audio controls>
-                    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav" type="audio/wav">
+                    <source src=#{audio3_url} type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
             </div>

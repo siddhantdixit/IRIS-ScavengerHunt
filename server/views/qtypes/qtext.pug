@@ -14,19 +14,11 @@ html(lang="en")
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
         title Level #{current_level}
     body
-        +levelbox(1)
+        +levelbox(current_level)
 
         div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-             p(style='font-weight:900;letter-spacing:1px;font-size:20px').
-               “Greetings of the day, hunters. Get ready as the treasure awaits you. The intense search has now begun. All the best!”
-             p(style="text-align:justify;line-height:2;font-weight:500;font-size:15px;margin-top:30px")
-                . 
-                   Character encoding is an essential part of digital communication. The Internet Assigned Numbers Authority (IANA) prefers the name US-ASCII for this character encoding. ASCII was developed from telegraph code. Its first commercial use was as a seven-bit teleprinter code promoted by Bell data services. Work on the ASCII standard began in May 1961, with the first meeting of the American Standards Association's (ASA) (now the American National Standards Institute or ANSI) X3.2 subcommittee. The first edition of the standard was published in 1963, underwent a major revision during 1967, and experienced its most recent update during 1986. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists and added features for devices other than teleprinters.
-
-                   Originally based on the English alphabet, ASCII encodes 128 specified characters into seven-bit integers as shown by the ASCII chart above. Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols. In addition, the original ASCII specification included 33 non-printing control codes which originated with Teletype machines; most of these are now obsolete, although a few are still commonly used, such as the carriage return, line feed and tab codes.
-
-                   We will set you off for the adventurous venture with this information. Remember to relate this information with any message you might have got before.
-             p(style="text-align:centre;margin-top:10px")
-                b May The Odds Be In Your Favour and remember to Sum It All Up!
-
+             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
+             p(style='text-align:justify;line-height:2;font-weight:500;font-size:15px;margin-top:30px') #{text_content}
+        //-  p(style="text-align:centre;margin-top:10px")
+        //-     b May The Odds Be In Your Favour and remember to Sum It All Up!
         include components/myinput.pug

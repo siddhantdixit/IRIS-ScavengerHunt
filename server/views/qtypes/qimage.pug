@@ -14,14 +14,13 @@ html(lang="en")
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
         title Level #{current_level}
     body
-        +levelbox(1)
+        +levelbox(current_level)
 
         div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-             p(style='font-weight:900;letter-spacing:1px;font-size:20px').
-               “Greetings of the day, hunters. Get ready as the treasure awaits you. The intense search has now begun. All the best!”
+             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
              br
              div
-                img(src="https://sandiway.arizona.edu/sudoku/wildcatjan17p.gif" alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
+                img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
              br
 
         include components/myinput.pug

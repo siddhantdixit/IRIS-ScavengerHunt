@@ -13,15 +13,39 @@ module.exports = function(app) {
 	app.set('json spaces', 2);
 
 	app.get('/qtext',function(req,res){
-		res.render('qtypes/qtext');
+
+		let template_data = {
+			current_level:'1',
+			heading_content:`“Greetings of the day, hunters. Get ready as the treasure awaits you. The intense search has now begun. All the best!”`,
+			text_content:`                   Character encoding is an essential part of digital communication. The Internet Assigned Numbers Authority (IANA) prefers the name US-ASCII for this character encoding. ASCII was developed from telegraph code. Its first commercial use was as a seven-bit teleprinter code promoted by Bell data services. Work on the ASCII standard began in May 1961, with the first meeting of the American Standards Association's (ASA) (now the American National Standards Institute or ANSI) X3.2 subcommittee. The first edition of the standard was published in 1963, underwent a major revision during 1967, and experienced its most recent update during 1986. Compared to earlier telegraph codes, the proposed Bell code and ASCII were both ordered for more convenient sorting (i.e., alphabetization) of lists and added features for devices other than teleprinters.
+
+			Originally based on the English alphabet, ASCII encodes 128 specified characters into seven-bit integers as shown by the ASCII chart above. Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols. In addition, the original ASCII specification included 33 non-printing control codes which originated with Teletype machines; most of these are now obsolete, although a few are still commonly used, such as the carriage return, line feed and tab codes.
+
+			We will set you off for the adventurous venture with this information. Remember to relate this information with any message you might have got before.`
+		}
+
+		res.render('qtypes/qtext',template_data);
 	});
 
 	app.get('/qimage',function(req,res){
-		res.render('qtypes/qimage');
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qimage',template_data);
 	});
 
 	app.get('/qaudio',function(req,res){
-		res.render('qtypes/qaudio');
+		let template_data = {
+			current_level:'3',
+			heading_content:'Feel the Random Audio',
+			audio1_url:'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav',
+			audio2_url:'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav',
+			audio3_url:'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav'
+		}
+		res.render('qtypes/qaudio',template_data);
 	});
 
 
