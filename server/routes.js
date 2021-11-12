@@ -328,6 +328,10 @@ module.exports = function(app) {
 		req.session.destroy(function(e){ res.status(200).send('ok'); });
 	})
 
+	// app.get('/logout', function(req, res){
+	// 	res.clearCookie('login');
+	// 	req.session.destroy(function(e){ res.redirect('/'); });
+	// })
 /*
 	control panel
 */
