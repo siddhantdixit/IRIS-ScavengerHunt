@@ -2,7 +2,7 @@
 /*
 	boilerplate for initializing an express app
 */
-
+const {MYPORT} = require('./portConfig');
 const fs 		= require('fs');
 const express 	= require('express');
 const moment 	= require('moment');
@@ -21,7 +21,7 @@ module.exports.init = function(path, app, dbName, sessions)
 {
 	app = app || express();
 	app.set('host', process.env.NODE_ENV || 'localhost');
-	app.set('http_port', process.env.HTTP_PORT || 8000);
+	app.set('http_port', process.env.HTTP_PORT || MYPORT);
 	app.set('https_port', process.env.HTTPS_PORT || 8443);
 	app.locals.moment = moment;
 	app.locals.pretty = process.env.NODE_ENV == 'localhost';
@@ -98,13 +98,13 @@ module.exports.start = function(app)
 
 	if (http === undefined) http = require('http').createServer(app);
 
-	http.listen(process.env.PORT||8000, function () {
-		console.log('* http service listening on port', process.env.PORT||8000);
+	http.listen(process.env.PORT||MYPORT, function () {
+		console.log('* http service listening on port', process.env.PORT||MYPORT);
 	});
 
 	if (https){
-		https.listen(process.env.PORT||8000, function(){
-			console.log('* https service listening on port', process.env.PORT||8000);
+		https.listen(process.env.PORT||MYPORT, function(){
+			console.log('* https service listening on port', process.env.PORT||MYPORT);
 		});
 	}
 
