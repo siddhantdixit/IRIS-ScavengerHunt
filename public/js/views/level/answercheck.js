@@ -3,6 +3,7 @@ const answerapi = () => {
     if(enteredtext == "")
       return
     $("#sidcont").hide();
+    $("#myquestionspinner").show();
     $.post("/level", {answer: enteredtext})
       .done(function(result)
       {
@@ -21,6 +22,7 @@ const answerapi = () => {
       })
       .always(function(){
         $("#sidcont").show();
+        $("#myquestionspinner").hide();
       });
 }
 
