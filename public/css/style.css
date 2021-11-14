@@ -29,9 +29,7 @@ h6 {
 /*
 	login window
 */
-/* #login {
-  width: 380px;
-} */
+
 #login .btn {
   float: left;
   width: 48%;
@@ -107,9 +105,7 @@ h6 {
 /*
 	modal windows
 */
-/* .modal .modal-dialog {
-  width: 480px;
-} */
+
 .modal .form-group {
   margin-bottom: 0px;
 }
