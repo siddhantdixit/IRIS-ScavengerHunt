@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@braitsch/express": "^1.1.8",
+    "@tailwindcss/forms": "^0.3.4",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "emailjs": "^3.4.0",
@@ -28,6 +29,7 @@
     "node": "16.10.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build-css": "tailwindcss build src/styles.css -o public/css/tailwind/styles.css"
   }
 }
