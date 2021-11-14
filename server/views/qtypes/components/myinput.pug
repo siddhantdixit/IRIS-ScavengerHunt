@@ -95,7 +95,13 @@ script.
     });
 
     $("#hintbtn").click(function(){
-        window.location.href="https://discord.gg/A97Y9u5MMa";
+        var discordserver = window.open("https://discord.gg/A97Y9u5MMa", "_blank");
+        discordserver.focus();
     });
 
+
+    $("#logoutbtn").click(function(){
+        //- location.reload();
+        window.location.href = "/logout";
+    });
 script(src="js/views/level/answercheck.js")
