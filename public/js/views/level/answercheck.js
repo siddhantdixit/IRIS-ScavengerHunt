@@ -10,11 +10,13 @@ const answerapi = () => {
         console.log(result.msg);
         if(result.msg == "NO")
         {
-          alert("Wrong Answer");
+          // alert("Wrong Answer");
+          $("#wrongpanelmodal").slideDown();
+          
         }
         else if(result.msg == "YES")
         {
-          location.reload();
+          $("#rightpanelmodal").slideDown();
         }
       })
       .fail(function(result){
