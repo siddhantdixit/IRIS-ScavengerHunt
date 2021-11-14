@@ -13,11 +13,18 @@ html(lang="en")
                 margin: auto;
                 }
                 img{
-                width:400px;
-                height:200px;
-                object-fit: cover;
-                padding:10px;
-            }
+                width:590px;
+                padding:30px;
+                margin:auto;
+                object-fit:contain
+                }
+            @media (max-width: 800px) {
+                img{
+                    width:100%;
+                    padding:0px;
+                }
+            }    
+
     body
         +levelbox(current_level)
 
@@ -27,7 +34,7 @@ html(lang="en")
             br
             .container
                 img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' alt='nature')
-                img(src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80' alt='nature')
+                img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' alt='nature')
             br
 
         include components/myinput.pug
