@@ -50,6 +50,17 @@ module.exports = function(app) {
 	});
 
 
+	app.get('/qcrossward',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward',template_data);
+	});
+
+
 	app.get('/mylevel',function(req,res){
 		res.render('level/base');
 	});

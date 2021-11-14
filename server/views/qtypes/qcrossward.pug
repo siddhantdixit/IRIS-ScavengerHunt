@@ -5,19 +5,19 @@ html(lang="en")
         include components/header.pug
         title Level #{current_level}
         style.
-        .container{
-        display:flex;
-        max-width: 1200px;
-        flex-wrap:wrap;
-        justify-content: center;
-        margin: auto;
-        }
-        img{
-        width:400px;
-        height:200px;
-        object-fit: cover;
-        padding:10px;
-        }
+            .container{
+                display:flex;
+                max-width: 1200px;
+                flex-wrap:wrap;
+                justify-content: center;
+                margin: auto;
+                }
+                img{
+                width:400px;
+                height:200px;
+                object-fit: cover;
+                padding:10px;
+            }
     body
         +levelbox(current_level)
 
@@ -26,7 +26,7 @@ html(lang="en")
             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
             br
             .container
-                img(src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80' alt='nature')
+                img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' alt='nature')
                 img(src='https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80' alt='nature')
             br
 
