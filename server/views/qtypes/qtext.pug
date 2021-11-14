@@ -6,10 +6,13 @@ html(lang="en")
         title Level #{current_level}
     body
         +levelbox(current_level)
-
-        div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
-             p(style='text-align:justify;line-height:2;font-weight:500;font-size:15px;margin-top:30px') #{text_content}
-        //-  p(style="text-align:centre;margin-top:10px")
-        //-     b May The Odds Be In Your Favour and remember to Sum It All Up!
-        include components/myinput.pug
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
+                p(style='text-align:justify;line-height:2;font-weight:500;font-size:15px;margin-top:30px') #{text_content}
+            //-  p(style="text-align:centre;margin-top:10px")
+            //-     b May The Odds Be In Your Favour and remember to Sum It All Up!
+            include components/myinput.pug
+        include components/footer.pug

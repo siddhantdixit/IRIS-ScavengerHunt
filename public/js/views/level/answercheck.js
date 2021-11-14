@@ -39,3 +39,11 @@ $("#sidinput").keypress(function (e) {
 $("#sidbtn").click(function() {
     answerapi();
 });
+
+$(document).ready(function() {
+  setTimeout(function() {
+    // $("#signInButton").trigger('click');
+    $("#mygamespinner").hide();
+    $("#mygamecomponents").slideDown();
+  }, 1000);
+});

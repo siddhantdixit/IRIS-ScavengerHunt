@@ -6,12 +6,15 @@ html(lang="en")
         title Level #{current_level}
     body
         +levelbox(current_level)
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
+                br
+                div
+                    img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
+                br
 
-        div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
-             br
-             div
-                img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
-             br
-
-        include components/myinput.pug
+            include components/myinput.pug
+        include components/footer.pug
