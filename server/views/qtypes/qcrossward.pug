@@ -7,14 +7,12 @@ html(lang="en")
         style.
             .container{
                 display:flex;
-                max-width: 1200px;
                 flex-wrap:wrap;
                 justify-content: center;
                 margin: auto;
                 }
                 img{
-                width:590px;
-                padding:30px;
+                width:50%;
                 margin:auto;
                 object-fit:contain
                 }
@@ -33,9 +31,9 @@ html(lang="en")
 
             p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
             br
-            .container
-                img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' alt='nature')
-                img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' alt='nature')
+        .container
+            img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' style='padding:20px;' alt='nature')
+            img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/CrosswordUSA.svg/1200px-CrosswordUSA.svg.png' style='padding:20px;' alt='nature')
             br
 
         include components/myinput.pug
