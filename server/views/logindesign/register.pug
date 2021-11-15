@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="h-full bg-gray-50" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="css/tailwind/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body class="h-full">
+    include components/registerdialog.pug
+    include components/successdialog.pug 
+    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div>
+                <svg class="mx-auto h-12 w-auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4f46e5" class="bi bi-robot" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Zm-8 5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 1 .182.135l.842 1.7.754-.785a.25.25 0 0 1 .166-.076 24.85 24.85 0 0 0 1.98-.19.25.25 0 0 1 .068.496 25.29 25.29 0 0 1-1.922.187l-.932.971a.25.25 0 0 1-.404-.062l-.847-1.71-.754.736a.25.25 0 0 1-.189.07 25.36 25.36 0 0 1-2.02-.192.25.25 0 1 1 .068-.495c.512.07 1.143.138 1.87.182l.921-.9a.25.25 0 0 1 .217-.067Z"/>
+                </svg>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900"> IRIS
+                </h2>
+
+            </div>
+            <form id="account-form" class="mt-8 space-y-6" action="#" method="POST">
+                //- <input type="hidden" name="remember" value="true">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="name-tf" class="sr-only">TeamName</label>
+                        <input id="name-tf" name="name" type="text" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Team Name">
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="member1" class="sr-only">Member 1</label>
+                        <input id="member1" name="member1" type="text" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Member 1*">
+                    </div>
+
+                    <div>
+                        <label for="member2" class="sr-only">Member 2</label>
+                        <input id="member2" name="member2" type="text" autocomplete="email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Member 2">
+                    </div>
+
+                    <div>
+                        <label for="member3" class="sr-only">Member 3</label>
+                        <input id="member3" name="member3" type="text" autocomplete="email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Member 3">
+                    </div>
+
+                    <div>
+                        <label for="member4" class="sr-only">Member 4</label>
+                        <input id="member4" name="member4" type="text" autocomplete="email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Member 4">
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="email-tf" class="sr-only">Email address</label>
+                        <input id="email-tf" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email">
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div>
+                        <label for="user-tf" class="sr-only">Username</label>
+                        <input id="user-tf" name="user" type="text" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="pass-tf" class="sr-only">Password</label>
+                        <input id="pass-tf" name="pass" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <div>
+                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+
+                            <svg  class="h-5 w-5 text-red-500 group-hover:text-red-400" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                            </svg>
+                        </span> Register
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+
+                    <div class="flex items-center">
+                        <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500"> Login
+                    </div>
+                    
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Need Help
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+</div>
+        script(src='/js/views/signup.js')
+        script(src='/js/controllers/signupController.js')
+        script(src='/js/form-validators/accountValidator.js')
+</body>
+</html>

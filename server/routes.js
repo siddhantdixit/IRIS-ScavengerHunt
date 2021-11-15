@@ -13,6 +13,14 @@ module.exports = function(app) {
 */
 	app.set('json spaces', 2);
 
+	app.get('/newlogin',function(req,res){
+		res.render('logindesign/login');
+	});
+
+	app.get('/newregister',function(req,res){
+		res.render('logindesign/register');
+	});
+
 	app.get('/qtext',function(req,res){
 
 		let template_data = {
@@ -50,12 +58,27 @@ module.exports = function(app) {
 	});
 
 
+	app.get('/qcrossward',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward',template_data);
+	});
+
+
 	app.get('/mylevel',function(req,res){
 		res.render('level/base');
 	});
     
 	app.get('/mylevel_image',function(req,res){
 		res.render('level/base_image');
+	});
+
+	app.get('/abc',function(req,res){
+		res.render('qtypes/qcrossward');
 	});
     
 
@@ -124,6 +147,16 @@ module.exports = function(app) {
 						text_content: lvldat.qdata.content.paragraph
 					}
 					res.render('qtypes/qtext',template_data);
+				}
+				else if(lvldat.qdata.type == 'crossward')
+				{
+					let template_data = {
+						current_level:lvldat.currentLvl,
+						heading_content:lvldat.qdata.text,
+						image_url:lvldat.qdata.content['image-url'],
+						hints_url:lvldat.qdata.content['hint-url'],
+					}
+					res.render('qtypes/qcrossward',template_data);
 				}
 				else if(lvldat.qdata.type == 'image')
 				{
@@ -284,7 +317,8 @@ module.exports = function(app) {
 	console.log("==== 1. / Called ====");
 		if (req.cookies.login == undefined){
 			console.log("==== 2. LOGIN Redirect ====");
-			res.render('login', { title: 'Hello - Please Login To Your Account' });
+			// res.render('login', { title: 'Hello - Please Login To Your Account' });
+			res.render('logindesign/login');
 		}	else{
 	// attempt automatic login //
 			console.log("==== 3. Auto Login Started ====");
@@ -300,7 +334,8 @@ module.exports = function(app) {
 				}	
 				else{
 					console.log("==== 6. LOGIN Redirect ====");
-					res.render('login', { title: 'Hello - Please Login To Your Account' });
+					// res.render('login', { title: 'Hello - Please Login To Your Account' });
+					res.render('logindesign/login');
 				}
 			});
 		}
@@ -377,7 +412,8 @@ module.exports = function(app) {
 */
 
 	app.get('/signup', function(req, res) {
-		res.render('signup', {  title: 'Signup', countries : countries });
+		res.render('logindesign/register', {  title: 'Signup', countries : countries });
+		// res.render('signup', {  title: 'Signup', countries : countries });
 	});
 
 	app.post('/signup', function(req, res){

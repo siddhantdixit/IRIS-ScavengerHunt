@@ -6,10 +6,23 @@ $(document).ready(function(){
 	
 	$('#account-form').ajaxForm({
 		beforeSubmit : function(formData, jqForm, options){
+
+			//Removing Focus
+			$("#name-tf").blur();
+			$("#member1").blur();
+			$("#member2").blur();
+			$("#member3").blur();
+			$("#member4").blur();
+			$("#email-tf").blur();
+			$("#user-tf").blur();
+			$("#pass-tf").blur();
+
+			// alert("Validating");
 			return av.validateForm();
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') $('.modal-alert').modal('show');
+			// alert("Success");
+			if (status == 'success') $('#successdialog').slideDown();
 		},
 		error : function(e){
 			if (e.responseText == 'email-taken'){
@@ -31,7 +44,7 @@ $(document).ready(function(){
 	
 // setup the alert that displays when an account is successfully created //
 
-	$('.modal-alert').modal({ show:false, keyboard : false, backdrop : 'static' });
+	// $('.modal-alert').modal({ show:false, keyboard : false, backdrop : 'static' });
 	$('.modal-alert .modal-header h4').text('Account Created!');
 	$('.modal-alert .modal-body p').html('Your account has been created.</br>Click OK to return to the login page.');
 
