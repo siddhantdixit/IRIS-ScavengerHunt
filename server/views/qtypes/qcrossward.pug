@@ -26,14 +26,15 @@ html(lang="en")
 
     body
         +levelbox(current_level)
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
+            .container
+                img(src=image_url style='padding:20px;' alt='nature')
+                img(src=hints_url style='padding:20px;' alt='nature')
+                br
 
-        div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
-
-            p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
-            br
-        .container
-            img(src=image_url style='padding:20px;' alt='nature')
-            img(src=hints_url style='padding:20px;' alt='nature')
-            br
-
-        include components/myinput.pug
+            include components/myinput.pug
+        include components/footer.pug
