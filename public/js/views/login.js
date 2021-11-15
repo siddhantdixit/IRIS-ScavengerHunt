@@ -11,8 +11,8 @@ $(document).ready(function(){
 			if (lv.validateForm() == false){
 				return false;
 			} 	else{
-				$("#mygamespinner").slideUp();
-				$("#myloginpanel").slideDown();
+				$("#mygamespinner").fadeIn("fast");
+				$("#myloginpanel").fadeOut("fase");
 			// append 'remember-me' option to formData to write local cookie //
 				// formData.push({name:'remember-me', value:$('#btn_remember').is(":checked")});
 				if(formData.length == 3)
@@ -24,13 +24,13 @@ $(document).ready(function(){
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			$("#myloginpanel").slideUp();
-			$("#mygamespinner").slideDown();
+			// $("#myloginpanel").slideUp();
+			// $("#mygamespinner").slideDown();
 			if (status == 'success') window.location.href = '/level';
 		},
 		error : function(e){
-			$("#mygamespinner").slideUp();
-			$("#myloginpanel").slideDown();
+			$("#mygamespinner").fadeOut("fast");
+			$("#myloginpanel").fadeIn("fast");
 
 			$("#user-tf").blur();
 			$("#pass-tf").blur();
