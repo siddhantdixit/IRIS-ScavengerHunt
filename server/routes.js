@@ -417,12 +417,33 @@ module.exports = function(app) {
 	});
 
 	app.post('/signup', function(req, res){
+		let member1 = req.body['member1'];
+		let member2 = req.body['member2'];
+		let member3 = req.body['member3'];
+		let member4 = req.body['member4'];
+
+
+		let memberlist = [];
+
+		if(member1)
+			memberlist.push(member1);
+
+		if(member2)
+			memberlist.push(member2);
+
+		if(member3)
+			memberlist.push(member3);
+
+		if(member4)
+			memberlist.push(member4);
+
 		accounts.addNewAccount({
 			name 	: req.body['name'],
 			email 	: req.body['email'],
 			user 	: req.body['user'],
 			pass	: req.body['pass'],
-			country : req.body['country']
+			country : req.body['country'],
+			members : memberlist
 		}, function(e,result){
 			if (e){
 				res.status(400).send(e);
