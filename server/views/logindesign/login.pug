@@ -8,10 +8,40 @@
     <link rel="stylesheet" href="css/tailwind/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    style.
+        .loadingspinner {
+            pointer-events: none;
+            width: 1.5em;
+            height: 1.5em;
+            border: 0.2em solid transparent;
+            border-color: #eee;
+            border-top-color: #7c3aed;
+            border-radius: 50%;
+            animation: loadingspin 1s linear infinite;
+        }
+
+        @keyframes loadingspin {
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        .mygamespin {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
 </head>
 <body class="h-full" style="-webkit-tap-highlight-color: transparent;">
     include components/dialog.pug
-    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    div(id="mygamespinner",class="mygamespin" style="display:none")
+        .loadingspinner
+    <div id="myloginpanel" class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
             <div>
                 <svg class="mx-auto h-12 w-auto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4f46e5" class="bi bi-robot" viewBox="0 0 16 16">
