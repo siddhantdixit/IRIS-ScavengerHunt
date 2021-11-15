@@ -140,6 +140,16 @@ module.exports = function(app) {
 					}
 					res.render('qtypes/qtext',template_data);
 				}
+				else if(lvldat.qdata.type == 'crossward')
+				{
+					let template_data = {
+						current_level:lvldat.currentLvl,
+						heading_content:lvldat.qdata.text,
+						image_url:lvldat.qdata.content['image-url'],
+						hints_url:lvldat.qdata.content['hint-url'],
+					}
+					res.render('qtypes/qcrossward',template_data);
+				}
 				else if(lvldat.qdata.type == 'image')
 				{
 					let template_data = {
