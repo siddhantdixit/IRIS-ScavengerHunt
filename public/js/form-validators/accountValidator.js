@@ -8,8 +8,8 @@ function AccountValidator()
 	
 // bind the form-error modal window to this controller to display any errors //
 	
-	this.alert = $('.modal-form-errors');
-	this.alert.modal({ show : false, keyboard : true, backdrop : true});
+	this.alert = $('#wrongpopup');
+	// this.alert.modal({ show : false, keyboard : true, backdrop : true});
 	
 	this.validateName = function(s)
 	{
@@ -34,11 +34,14 @@ function AccountValidator()
 	
 	this.showErrors = function(a)
 	{
-		$('.modal-form-errors .modal-body p').text('Please correct the following problems :');
-		var ul = $('.modal-form-errors .modal-body ul');
+		// $('.modal-form-errors .modal-body p').text('Please correct the following problems :');
+		$('#modal-content').text('Please correct the following problems :');
+		
+		var ul = $('#modal-errorslist');
 			ul.empty();
 		for (var i=0; i < a.length; i++) ul.append('<li>'+a[i]+'</li>');
-		this.alert.modal('show');
+		// this.alert.modal('show');
+		this.alert.slideDown();
 	}
 
 }

@@ -12,7 +12,12 @@ $(document).ready(function(){
 				return false;
 			} 	else{
 			// append 'remember-me' option to formData to write local cookie //
-				formData.push({name:'remember-me', value:$('#btn_remember').find('span').hasClass('fa-check-square')});
+				// formData.push({name:'remember-me', value:$('#btn_remember').is(":checked")});
+				if(formData.length == 3)
+				{
+					formData.pop();
+				}
+				formData.push({name:'remember-me', value:$('#btn_remember').is(":checked")});
 				return true;
 			}
 		},
@@ -20,21 +25,24 @@ $(document).ready(function(){
 			if (status == 'success') window.location.href = '/level';
 		},
 		error : function(e){
+			$("#user-tf").blur();
+			$("#pass-tf").blur();
+			// $("input:text:visible:second").blur();
 			lv.showLoginError('Login Failure', 'Please check your username and/or password');
 		}
 	});
 
 	$("input:text:visible:first").focus();
-	$('#btn_remember').click(function(){
-		var span = $(this).find('span');
-		if (span.hasClass('fa-minus-square')){
-			span.removeClass('fa-minus-square');
-			span.addClass('fa-check-square');
-		}	else{
-			span.addClass('fa-minus-square');
-			span.removeClass('fa-check-square');
-		}
-	});
+	// $('#btn_remember').click(function(){
+	// 	var span = $(this).find('span');
+	// 	if (span.hasClass('fa-minus-square')){
+	// 		span.removeClass('fa-minus-square');
+	// 		span.addClass('fa-check-square');
+	// 	}	else{
+	// 		span.addClass('fa-minus-square');
+	// 		span.removeClass('fa-check-square');
+	// 	}
+	// });
 
 // login retrieval form via email //
 

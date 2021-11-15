@@ -13,6 +13,14 @@ module.exports = function(app) {
 */
 	app.set('json spaces', 2);
 
+	app.get('/newlogin',function(req,res){
+		res.render('logindesign/login');
+	});
+
+	app.get('/newregister',function(req,res){
+		res.render('logindesign/register');
+	});
+
 	app.get('/qtext',function(req,res){
 
 		let template_data = {
@@ -309,7 +317,8 @@ module.exports = function(app) {
 	console.log("==== 1. / Called ====");
 		if (req.cookies.login == undefined){
 			console.log("==== 2. LOGIN Redirect ====");
-			res.render('login', { title: 'Hello - Please Login To Your Account' });
+			// res.render('login', { title: 'Hello - Please Login To Your Account' });
+			res.render('logindesign/login');
 		}	else{
 	// attempt automatic login //
 			console.log("==== 3. Auto Login Started ====");
@@ -325,7 +334,8 @@ module.exports = function(app) {
 				}	
 				else{
 					console.log("==== 6. LOGIN Redirect ====");
-					res.render('login', { title: 'Hello - Please Login To Your Account' });
+					// res.render('login', { title: 'Hello - Please Login To Your Account' });
+					res.render('logindesign/login');
 				}
 			});
 		}
@@ -402,7 +412,8 @@ module.exports = function(app) {
 */
 
 	app.get('/signup', function(req, res) {
-		res.render('signup', {  title: 'Signup', countries : countries });
+		res.render('logindesign/register', {  title: 'Signup', countries : countries });
+		// res.render('signup', {  title: 'Signup', countries : countries });
 	});
 
 	app.post('/signup', function(req, res){
