@@ -5,7 +5,7 @@
 const {MYPORT} = require('./portConfig');
 const fs 		= require('fs');
 const express 	= require('express');
-const moment 	= require('moment');
+const moment 	= require('moment-timezone');
 const mnstore 	= require('connect-mongo');
 const session	= require('express-session');
 
@@ -120,7 +120,7 @@ module.exports.log = function(logdir)
 	}
 	global.log = function()
 	{
-		var str = moment().format('MMMM Do YYYY h:mm:ssA') + ' :: ';
+		var str = moment().tz("Asia/Kolkata").format('MMMM Do YYYY h:mm:ssA') + ' :: ';
 		for (const p in arguments) str += arguments[p] + ' ';
 		fs.appendFile(logdir + '/app.log', str + '\n', (e) => { console.log(str); });
 	}

@@ -1,6 +1,6 @@
 
 const crypto 		= require('crypto');
-const moment 		= require('moment');
+const moment 		= require('moment-timezone');
 
 let accounts = undefined;
 
@@ -98,7 +98,7 @@ module.exports.addNewAccount = function(newData, callback)
 					saltAndHash(newData.pass, function(hash){
 						newData.pass = hash;
 					// append date stamp when record was created //
-						newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+						newData.date = moment().tz("Asia/Kolkata").format('MMMM Do YYYY, h:mm:ss a');
 						accounts.insertOne(newData, callback);
 					});
 				}
