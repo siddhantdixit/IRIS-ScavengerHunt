@@ -1,4 +1,4 @@
-const moment 		= require('moment');
+const moment 		= require('moment-timezone');
 const { ObjectId } = require("bson");
 
 let userQuestions = undefined;
@@ -44,7 +44,7 @@ module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userI
 		let newvalues = { 
 			$set:{
 				[questionBoolIndex]:true,
-				[questionTimeIndex]:moment().format('MMMM Do YYYY, h:mm:ss a')
+				[questionTimeIndex]:moment().tz("Asia/Kolkata").format('MMMM Do YYYY, h:mm:ss a')
 			}
 		};
 		console.log("2   updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
