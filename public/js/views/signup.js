@@ -16,6 +16,7 @@ $(document).ready(function(){
 			$("#email-tf").blur();
 			$("#user-tf").blur();
 			$("#pass-tf").blur();
+			$("#cnfpass-tf").blur();
 
 			// alert("Validating");
 			return av.validateForm();
