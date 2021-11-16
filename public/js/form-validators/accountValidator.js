@@ -3,8 +3,8 @@ function AccountValidator()
 {
 // build array maps of the form inputs & control groups //
 
-	this.formFields = [$('#name-tf'), $('#email-tf'), $('#user-tf'), $('#pass-tf')];
-	this.controlGroups = [$('#name-cg'), $('#email-cg'), $('#user-cg'), $('#pass-cg')];
+	this.formFields = [$('#name-tf'), $('#email-tf'), $('#user-tf'), $('#pass-tf'), $('#cnfpass-tf')];
+	this.controlGroups = [$('#name-cg'), $('#email-cg'), $('#user-cg'), $('#pass-cg'),$('#cnfpass-cg')];
 	
 // bind the form-error modal window to this controller to display any errors //
 	
@@ -23,6 +23,18 @@ function AccountValidator()
 			return true;
 		}	else{
 			return s.length >= 6;
+		}
+	}
+
+	this.validateConfirmPassword = function(pass,cnfpass)
+	{
+		if(pass === cnfpass)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
@@ -75,6 +87,11 @@ AccountValidator.prototype.validateForm = function()
 	if (this.validatePassword(this.formFields[3].val()) == false) {
 		this.controlGroups[3].addClass('error');
 		e.push('Password Should Be At Least 6 Characters');
+	}
+	if(this.validateConfirmPassword(this.formFields[3].val(),this.formFields[4].val()) == false)
+	{
+		this.controlGroups[4].addClass('error');
+		e.push('Password and Confirm Password should be same');
 	}
 	if (e.length) this.showErrors(e);
 	return e.length === 0;
