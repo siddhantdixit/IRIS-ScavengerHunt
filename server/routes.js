@@ -69,23 +69,6 @@ module.exports = function(app) {
 	});
 
 
-	app.get('/mylevel',function(req,res){
-		res.render('level/base');
-	});
-    
-	app.get('/mylevel_image',function(req,res){
-		res.render('level/base_image');
-	});
-
-	app.get('/abc',function(req,res){
-		res.render('qtypes/qcrossward');
-	});
-    
-
-	app.get('/mylevel_audio',function(req,res){
-		res.render('level/base_audio');
-	});
-
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){
 			console.log(qns);
