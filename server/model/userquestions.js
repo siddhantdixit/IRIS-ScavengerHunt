@@ -37,7 +37,7 @@ module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userI
 {
 	try {
 		console.log("1   updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
-		let total_levels = 3;
+		let total_levels = 5;
 		let questionBoolIndex = `questions.${levelNo}.done`;
 		let questionTimeIndex = `questions.${levelNo}.timestamp`;
 		let myquery = {'user_id':ObjectId(userId)};
