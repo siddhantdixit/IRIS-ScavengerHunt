@@ -36,6 +36,16 @@ module.exports = function(app) {
 		res.render('qtypes/qtext',template_data);
 	});
 
+	app.get('/qmap',function(req,res){
+
+		let template_data = {
+			current_level:'4',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qmap',template_data);
+	});
+
 	app.get('/qimage',function(req,res){
 
 		let template_data = {

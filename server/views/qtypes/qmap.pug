@@ -1,0 +1,28 @@
+include components/mylevelbox.pug
+doctype html
+html(lang="en")
+    head
+        include components/header.pug
+        title Level #{current_level}
+    body
+        +levelbox(current_level)
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:900;letter-spacing:1px;font-size:20px') #{heading_content}
+                br
+                div
+                    //- img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.702281086701!2d75.02308171501653!3d15.392601889301993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8d3a4bc7f5c91%3A0xf0fc456099430c57!2sIndian%20Institute%20Of%20Information%20Technology%2C%20Dharwad!5e0!3m2!1sen!2sin!4v1655963830178!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                br
+                div
+                    <button id="upload" class="upload-btn" type="button">
+                        <svg class="upload-btn-border" xmlns="http://www.w3.org/2000/svg" width="120px" height="50px" viewBox="0 0 120 50" role="presentation">
+                            <rect x="-2" y="-2" width="124" height="54" rx="27" ry="27" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="0 310" opacity="0" />
+                        </svg>
+                        <span class="upload-btn-text">Upload</span>
+                    </button>
+                br
+            include components/myinput.pug
+        include components/footer.pug
