@@ -449,6 +449,26 @@ module.exports = function(app) {
 	});
 
 
+	app.get('/resetQuestions', function (req,res) {
+
+		let userID = req.session.user._id;
+
+
+		userQuestions.resetLevelsOfUser(userID,function(error,result){
+			if(error) 
+			{
+				console.log(error);
+				res.status(400).send(error);
+			}
+			else
+			{
+				res.status(200).send('Level Progress Reset Successfull');
+			}
+		});
+		
+	});
+
+
 		// userQuestions.i)nsertNewlyRegisteredUserDataSampleData('USERID',function(msg){
 	// 	console.log(msg);
 	// });

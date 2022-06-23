@@ -3,14 +3,14 @@ const { ObjectId } = require("bson");
 
 let userQuestions = undefined;
 
-module.exports.init = function(db)
+init = function(db)
 {
 	userQuestions = db.collection('userquestions');
 // index fields 'user' & 'email' for faster new account validation //
 }
 
 
-module.exports.getAllUsersData = function(callback)
+getAllUsersData = function(callback)
 {
 	userQuestions.find().toArray(
 		function(e, res) {
@@ -19,7 +19,7 @@ module.exports.getAllUsersData = function(callback)
 	});
 }
 
-module.exports.getUserQuestionDataByID = function(qid,callback)
+getUserQuestionDataByID = function(qid,callback)
 {
 	try {
 		userQuestions.findOne({'user_id':ObjectId(qid)},function(e, res) {
@@ -33,7 +33,7 @@ module.exports.getUserQuestionDataByID = function(qid,callback)
 
 }
 
-module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userId,levelNo,callback) 
+updateUserQuestionDoneAddTimeStampIncrementLevel = function(userId,levelNo,callback) 
 {
 	try {
 		console.log("1   updateUserQuestionDoneAddTimeStampIncrementLevel ------>  ");
@@ -68,7 +68,7 @@ module.exports.updateUserQuestionDoneAddTimeStampIncrementLevel = function(userI
 	}
 }
 
-module.exports.insertNewlyRegisteredUserDataSampleData = function(userId,callback)
+insertNewlyRegisteredUserDataSampleData = function(userId,callback)
 {
 	try{
 		let sampledata = {
@@ -107,4 +107,50 @@ module.exports.insertNewlyRegisteredUserDataSampleData = function(userId,callbac
 	{
 		callback(error);
 	}
+}
+
+
+resetLevelsOfUser = function(userId,callback)
+{
+
+	console.log("Resetting Questions For User");
+
+	let myquery = {'user_id':ObjectId(userId)};
+
+	try
+	{
+		userQuestions.deleteOne(myquery,function(err,res){
+			
+
+			let userObj = ObjectId(userId);
+			this.insertNewlyRegisteredUserDataSampleData(userObj,function(error,result){
+				if(error) 
+				{
+					console.log(error);
+					callback(error);
+				}
+				else
+				{
+					console.log(error);
+					console.log(result);
+					callback(error,result);
+				}
+			});
+		});
+	}
+	catch(error)
+	{
+		callback(error);
+	}
+
+}
+
+
+module.exports = {
+	init,
+	getAllUsersData,
+	getUserQuestionDataByID,
+	updateUserQuestionDoneAddTimeStampIncrementLevel,
+	insertNewlyRegisteredUserDataSampleData,
+	resetLevelsOfUser
 }
