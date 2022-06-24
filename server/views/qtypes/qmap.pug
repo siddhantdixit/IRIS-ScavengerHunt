@@ -3,6 +3,11 @@ doctype html
 html(lang="en")
     head
         include components/header.pug
+        //- link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+        //- integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
+        link(href='public/css/qmap.css' rel='stylesheet')
+        script(src="public/js/qmap.js") 
+
         title Level #{current_level}
     body
         +levelbox(current_level)
@@ -14,7 +19,9 @@ html(lang="en")
                 br
                 div
                     //- img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.702281086701!2d75.02308171501653!3d15.392601889301993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8d3a4bc7f5c91%3A0xf0fc456099430c57!2sIndian%20Institute%20Of%20Information%20Technology%2C%20Dharwad!5e0!3m2!1sen!2sin!4v1655963830178!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id="map" style="height:500px;width: 100%;" class="map"></div>
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false") 
+    script(src="js/google-map.js") 
                 br
                 div
                     <button id="upload" class="upload-btn" type="button">
@@ -24,5 +31,27 @@ html(lang="en")
                         <span class="upload-btn-text">Upload</span>
                     </button>
                 br
-            include components/myinput.pug
-        include components/footer.pug
+
+
+                
+                <form id="file-upload-form" class="uploader">
+                <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+
+                <label for="file-upload" id="file-drag">
+                    <img id="file-image" src="#" alt="Preview" class="hidden">
+                    <div id="start">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <div>Select an image or drag here</div>
+                    <div id="notimage" class="hidden">Please select an image</div>
+                        <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                    </div>
+                    <div id="response" class="hidden">
+                    <div id="messages"></div>
+                    <progress class="progress" id="file-progress" value="0">
+                    <span>0</span>%
+                    </progress>
+                    </div>
+                </label>
+                </form>
+include components/myinput.pug
+include components/footer.pug
