@@ -7,30 +7,6 @@ body,
   font-size: 16px;
 }
 
-html,
-body {
-  height: 100%;
-  text-align: center;
-}
-
-body {
-  padding: 2rem;
-  background: #f8f8f8;
-}
-
-h2 {
-  font-family: "Roboto", sans-serif;
-  font-size: 26px;
-  line-height: 1;
-  color: #454cad;
-  margin-bottom: 0;
-}
-
-p {
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  color: #5f6982;
-}
 
 .uploader {
   display: block;

@@ -3,10 +3,8 @@ doctype html
 html(lang="en")
     head
         include components/header.pug
-        //- link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-        //- integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
-        link(href='public/css/qmap.css' rel='stylesheet')
-        script(src="public/js/qmap.js") 
+        link(href='css/qmap.css' rel='stylesheet')
+        script(src="js/qmap.js") 
 
         title Level #{current_level}
     body
@@ -23,35 +21,7 @@ html(lang="en")
     script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false") 
     script(src="js/google-map.js") 
                 br
-                div
-                    <button id="upload" class="upload-btn" type="button">
-                        <svg class="upload-btn-border" xmlns="http://www.w3.org/2000/svg" width="120px" height="50px" viewBox="0 0 120 50" role="presentation">
-                            <rect x="-2" y="-2" width="124" height="54" rx="27" ry="27" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="0 310" opacity="0" />
-                        </svg>
-                        <span class="upload-btn-text">Upload</span>
-                    </button>
                 br
+    include components/insertImageForm.pug
 
-
-                
-                <form id="file-upload-form" class="uploader">
-                <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
-
-                <label for="file-upload" id="file-drag">
-                    <img id="file-image" src="#" alt="Preview" class="hidden">
-                    <div id="start">
-                    <i class="fa fa-download" aria-hidden="true"></i>
-                    <div>Select an image or drag here</div>
-                    <div id="notimage" class="hidden">Please select an image</div>
-                        <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-                    </div>
-                    <div id="response" class="hidden">
-                    <div id="messages"></div>
-                    <progress class="progress" id="file-progress" value="0">
-                    <span>0</span>%
-                    </progress>
-                    </div>
-                </label>
-                </form>
-include components/myinput.pug
 include components/footer.pug
