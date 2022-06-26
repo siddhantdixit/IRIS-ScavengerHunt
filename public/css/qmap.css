@@ -9,11 +9,13 @@ body,
 
 
 .uploader {
-  display: block;
+  display: flex;
   clear: both;
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 .uploader label {
   float: left;

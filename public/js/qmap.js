@@ -101,7 +101,7 @@ function ekUpload(){
       var xhr = new XMLHttpRequest(),
         fileInput = document.getElementById('class-roster-file'),
         pBar = document.getElementById('file-progress'),
-        fileSizeLimit = 1024; // In MB
+        fileSizeLimit = 1; // In MB
       if (xhr.upload) {
         // Check if file is less than x MB
         if (file.size <= fileSizeLimit * 1024 * 1024) {
