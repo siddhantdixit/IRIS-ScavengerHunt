@@ -4,8 +4,6 @@ html(lang="en")
     head
         include components/header.pug
         link(href='css/qmap.css' rel='stylesheet')
-        script(src="js/qmap.js") 
-
         title Level #{current_level}
     body
         +levelbox(current_level)
@@ -25,3 +23,5 @@ html(lang="en")
     include components/insertImageForm.pug
 
 include components/footer.pug
+script(src="js/qmap.js") 
+
