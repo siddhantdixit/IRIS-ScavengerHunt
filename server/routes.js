@@ -68,6 +68,37 @@ module.exports = function(app) {
 		res.render('qtypes/qcrossward',template_data);
 	});
 
+	app.get('/sudoku1',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku1',template_data);
+	});
+
+	app.get('/sudoku2',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku2',template_data);
+	});
+	
+
+	app.get('/sudoku3',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku3',template_data);
+	});
+
 
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){

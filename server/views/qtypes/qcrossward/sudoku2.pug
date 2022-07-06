@@ -1,0 +1,43 @@
+include ../components/mylevelbox.pug
+doctype html
+html(lang="en")
+    head
+        include ../components/header.pug
+        include qcrosscomponents/header.pug
+        title Level #{current_level}
+        style.
+            .container{
+                display:flex;
+                flex-wrap:wrap;
+                justify-content: center;
+                margin: auto;
+                }
+                img{
+                width:50%;
+                margin:auto;
+                object-fit:contain
+                }
+            @media (max-width: 800px) {
+                img{
+                    width:100%;
+                    padding :0px;
+                    padding-bottom:20px;
+                }
+            }    
+
+    body
+        +levelbox(current_level)
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:800;letter-spacing:1px;font-size:17px') Solve this simple crossword puzzle with the help of the given clues and reach the next level of the scavenger hunt. Ready? Set? Go.
+            .crossword-container
+                <div class="crossword">
+                </div>
+                br
+
+            include ../components/myinput.pug
+        include ../components/footer.pug
+        <script src="js/sudoku/sudoku2.js"></script>
+        include qcrosscomponents/footer.pug
