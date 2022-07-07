@@ -169,8 +169,30 @@ module.exports = function(app) {
 						heading_content:lvldat.qdata.text,
 						image_url:lvldat.qdata.content['image-url'],
 						hints_url:lvldat.qdata.content['hint-url'],
+
+						crossward_set:lvldat.qdata.set
 					}
-					res.render('qtypes/qcrossward',template_data);
+					// res.render('qtypes/qcrossward',template_data);
+					
+					
+					if(template_data.crossward_set=="A")
+					{
+						res.render('qtypes/qcrossward/sudoku1',template_data);
+					}
+					else if(template_data.crossward_set=="B")
+					{
+						res.render('qtypes/qcrossward/sudoku2',template_data);
+					}
+					else if(template_data.crossward_set=="C")
+					{
+						res.render('qtypes/qcrossward/sudoku3',template_data);
+					}
+					else
+					{
+						res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
+					}
+
+
 				}
 				else if(lvldat.qdata.type == 'image')
 				{

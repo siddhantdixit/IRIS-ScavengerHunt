@@ -123,32 +123,32 @@ $downClues.appendTo($crosswordClues.find('.row'));
 $crosswordClues.appendTo('.crossword');
 
 // Add the hints, reset, and show answers buttons
-var $puzzleButtons = $('<div class="crossword-buttons"></div>');
-var $hintsButton = $('<button class="btn btn-default">Show Hints</button>');
-    $hintsButton.on('click',function(e){
-        e.preventDefault();
-        $('.crossword-clues').toggleClass('show-hints');
-        $(this).text( $(this).text() == 'Show Hints' ? 'Hide Hints' : 'Show Hints' );
-    });
-    $hintsButton.appendTo($puzzleButtons);
-var $resetButton = $('<button class="btn btn-default">Clear Puzzle</button>');
-    $resetButton.on('click',function(e){
-        e.preventDefault();
-        $('input.letter').val('').parent('.grid-square').removeClass('correct-down correct-across');
-        $('.crossword-clues li').removeClass('correct');
-        markCorrect = true;
-    });
-    $resetButton.appendTo($puzzleButtons);
-var $solveButton = $('<button class="show-answers btn btn-default">Show Answers</button>');
-    $solveButton.on('click',function(e){
-        e.preventDefault();
-        $('input.letter').each(function(){
-            $(this).val($(this).data('letter'));
-        });
-        markCorrect = false;
-    });
-    $solveButton.appendTo($puzzleButtons);
-$puzzleButtons.appendTo('.crossword');
+// var $puzzleButtons = $('<div class="crossword-buttons"></div>');
+// var $hintsButton = $('<button class="btn btn-default">Show Hints</button>');
+//     $hintsButton.on('click',function(e){
+//         e.preventDefault();
+//         $('.crossword-clues').toggleClass('show-hints');
+//         $(this).text( $(this).text() == 'Show Hints' ? 'Hide Hints' : 'Show Hints' );
+//     });
+//     $hintsButton.appendTo($puzzleButtons);
+// var $resetButton = $('<button class="btn btn-default">Clear Puzzle</button>');
+//     $resetButton.on('click',function(e){
+//         e.preventDefault();
+//         $('input.letter').val('').parent('.grid-square').removeClass('correct-down correct-across');
+//         $('.crossword-clues li').removeClass('correct');
+//         markCorrect = true;
+//     });
+//     $resetButton.appendTo($puzzleButtons);
+// var $solveButton = $('<button class="show-answers btn btn-default">Show Answers</button>');
+//     $solveButton.on('click',function(e){
+//         e.preventDefault();
+//         $('input.letter').each(function(){
+//             $(this).val($(this).data('letter'));
+//         });
+//         markCorrect = false;
+//     });
+//     $solveButton.appendTo($puzzleButtons);
+// $puzzleButtons.appendTo('.crossword');
 
 // Add the success modal
 var $modal = $('<div class="modal fade" id="success-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Congratulations!</h4></div><div class="modal-body"><p>You have finished the puzzle.</p></div></div></div></div>');
