@@ -8,7 +8,7 @@
             </div>
             <div id="sidcont" class="container mx-auto">
                 <form class="flex w-full max-w-sm mx-auto space-x-3">
-                    <button id="sidbtn" class="flex-shrink-0 bg-purple-600 text-white text-base font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="button">
+                    <button id="crosswordbtn" class="flex-shrink-0 bg-purple-600 text-white text-base font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="button">
                         <i class="bi bi-arrow-right"></i>
                     </button>
                 </form>
@@ -99,4 +99,148 @@ script.
     $("#logoutbtn").click(function(){
         //- location.reload();
         window.location.href = "/logout";
+    });
+
+
+    $("#crosswordbtn").click(function(){
+        // var allAnswers = [];
+
+        // for(i=0;i<words.length;i++)
+        // {
+        //     var number = words[i]['number'];
+        //     var direction = words[i]['direction'][0];
+        //     var answerLength = words[i]['answer'].length;
+            
+        //     var userAnswer = '';
+        //     for(j=1;j<=answerLength;j++)
+        //     {
+        //         userAnswer+= $('input[id*=\''+direction+'-'+number+'-'+j+'\'').val();
+        //     }
+
+        //     allAnswers.push({
+        //         number:number,
+        //         direction:direction,
+        //         answerLength:answerLength,
+        //         userAnswer:userAnswer
+        //     });
+
+        // }
+
+        // var obj = {};
+
+        // let x = $('input.letter')
+        // for(i=0;i<x.length;i++)
+        // {
+        //     let temp = x[i]['id'].split('+');
+
+        //     if(temp.length>1)
+        //     {
+        //         let temp = x[i]['id'].split('+');
+
+        //     }
+        // }
+
+
+        
+        var allAnswers = {};
+
+        for(i=0;i<words.length;i++)
+        {
+            var number = words[i]['number'];
+            var direction = words[i]['direction'][0];
+            var answerLength = words[i]['answer'].length;
+            
+            var userAnswer = '';
+            for(j=1;j<=answerLength;j++)
+            {
+                // userAnswer+= $('input[id*=\''+direction+'-'+number+'-'+j+'\'').val();
+                var place = `${direction}-${number}-${j}`;
+                allAnswers[place] = $('input[id*=\''+direction+'-'+number+'-'+j+'\'').val();
+            }
+
+            // allAnswers.push({
+            //     number:number,
+            //     direction:direction,
+            //     answerLength:answerLength,
+            //     userAnswer:userAnswer
+            // });
+
+        }
+
+        console.log(allAnswers);
+        // encodeURIComponent(JSON.stringify(object_to_be_serialised))
+        let userCrosswordInputs = encodeURIComponent(JSON.stringify(allAnswers));
+        
+
+
+        $("#sidcont").hide();
+        $("#myquestionspinner").show();
+        
+        let obj = {
+            answer:"sudoku",
+            //- sudokuset:
+            sudokuans: userCrosswordInputs
+        };
+
+        $.post("/level", obj)
+            .done(function(result)
+            {
+                console.log(result.msg);
+                if(result.msg == "NO")
+                {
+                // alert("Wrong Answer");
+                    //- $("#wrongpanelmodal").slideDown();
+                    console.log("Saved");
+                
+                }
+                else if(result.msg == "YES")
+                {
+                    $("#rightpanelmodal").slideDown();
+                }
+            })
+            .fail(function(result){
+                console.log(result);
+            })
+            .always(function(){
+                $("#sidcont").show();
+                $("#myquestionspinner").hide();
+        });
+
+    });
+
+
+    $( document ).ready(function() {
+        
+        $.get("/api/sudoku")
+            .done(function(result){
+                console.log(result);
+
+                if(result.msg!="404")
+                {
+                    let sudokuInputs = JSON.parse(decodeURIComponent(result.sudokuAns));
+                    console.log(sudokuInputs);
+
+
+                    for(const property in sudokuInputs)
+                    {
+                        let sudoEle = sudokuInputs[property];
+                        if(sudoEle.trim()!='')
+                        {
+                            $('input[id*=\''+property+'\'').val(sudoEle);
+                        }
+                    }
+
+
+                    for(i=0;i<words.length;i++)
+                    {
+                        var number = words[i]['number'];
+                        var direction = words[i]['direction'][0];
+
+                        var place = `${direction}-${number}-1`;
+
+                        checkWord($('input[id*=\''+place+'\''));
+                    }
+
+                }
+            });
     });

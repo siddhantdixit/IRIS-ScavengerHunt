@@ -2,6 +2,7 @@
 const accounts = require('./model/accounts');
 const questions = require('./model/questions');
 const userQuestions = require('./model/userquestions');	
+const sudokuManager = require('./model/sudoku');
 const emailjs = require('./utils/emailjs');
 const countries = require('./json/countries');
 const { url } = require('stylus');
@@ -138,6 +139,16 @@ module.exports = function(app) {
 	});
 
 
+	app.get('/api/sudoku',function(req,res){
+		let userId = req.session.user._id;
+
+		sudokuManager.getSavedAnswer(userId,function(e,dat){
+			if(dat)	res.send(dat);
+			else res.send({"msg":"404"});
+		});
+	});
+
+
 
 
 	app.get('/level', async function(req, res) {
@@ -245,7 +256,50 @@ module.exports = function(app) {
 				}
 				else if(lvldat)
 				{
-					if(entered_answer==lvldat.qdata.answer.toLowerCase())
+					if(entered_answer=="sudoku")
+					{
+						let sudoku_set = lvldat.qdata.set;
+						let sudoku_answer = req.body.sudokuans;
+						let userId = req.session.user._id;
+
+						
+						/**
+						 * 1. SaveSudoku to Sudoku Collection
+						 * 
+						 * 2. Check Sudoku Answer
+						 *  	if it is correct then -> correct and update level. return msg:YES
+						 * 		else
+						 * 			return msg:NO
+						 * 	
+						 * 
+						 */
+						 sudokuManager.saveSudokuAnswer(userId,sudoku_set,sudoku_answer,function(e,output){
+							// res.send(output);
+
+							// res.send({"msg":"NO"});
+						 });
+
+						 const sudokuResult = sudokuManager.checkSudokuAnswer(sudoku_answer,sudoku_set);
+						 if(sudokuResult)
+						 {
+							const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
+							if(myout.result.ok == 1)
+							{
+								res.send({"msg":"YES"});
+							}
+							else
+							{
+								res.send({"msg":"Something Went Wrong try again!"});
+							}
+						 }
+						 else
+						 {
+							res.send({"msg":"NO"});
+						 }
+
+						
+					}
+					else if(entered_answer==lvldat.qdata.answer.toLowerCase())
 					{
 						const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
 						if(myout.result.ok == 1)
