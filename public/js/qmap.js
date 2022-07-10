@@ -1,5 +1,8 @@
 // File Upload
 // 
+
+var uploadedFileURL = "";
+
 function ekUpload(){
     function Init() {
   
@@ -114,7 +117,9 @@ function ekUpload(){
           xhr.onreadystatechange = function(e) {
             if (xhr.readyState == 4) {
               // Everything is good!
-  
+              console.log(xhr.response);
+              uploadedFileURL = xhr.response.file;
+
               // progress.className = (xhr.status == 200 ? "success" : "failure");
               // document.location.reload(true);
             }
@@ -124,6 +129,7 @@ function ekUpload(){
           xhr.open('POST', document.getElementById('file-upload-form').action, true);
           xhr.setRequestHeader('X-File-Name', file.name);
           xhr.setRequestHeader('X-File-Size', file.size);
+          xhr.responseType = 'json';
           // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
 
           console.log(file);
@@ -145,3 +151,14 @@ function ekUpload(){
     }
   }
   ekUpload();
+
+$("#qmapSubmit").click(function(){
+  console.log("Submit Clicked");
+  if(uploadedFileURL=="")
+  {
+    alert("Please attach and upload file first");
+    return;
+  }
+  
+  console.log(uploadedFileURL);
+});
