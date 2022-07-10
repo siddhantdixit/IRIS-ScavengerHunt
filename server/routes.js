@@ -2,6 +2,7 @@
 const accounts = require('./model/accounts');
 const questions = require('./model/questions');
 const userQuestions = require('./model/userquestions');	
+const sudokuManager = require('./model/sudoku');
 const emailjs = require('./utils/emailjs');
 const countries = require('./json/countries');
 const { url } = require('stylus');
@@ -119,6 +120,37 @@ module.exports = function(app) {
 		res.render('qtypes/qcrossward',template_data);
 	});
 
+	app.get('/sudoku1',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku1',template_data);
+	});
+
+	app.get('/sudoku2',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku2',template_data);
+	});
+	
+
+	app.get('/sudoku3',function(req,res){
+
+		let template_data = {
+			current_level:'2',
+			heading_content:'Feel the Random Image',
+			image_url:'https://source.unsplash.com/random/800x600'
+		}
+		res.render('qtypes/qcrossward/sudoku3',template_data);
+	});
+
 
 	app.get('/questions',function(req,res){
 		questions.getAllQues( function(e, qns){
@@ -178,6 +210,16 @@ module.exports = function(app) {
 	});
 
 
+	app.get('/api/sudoku',function(req,res){
+		let userId = req.session.user._id;
+
+		sudokuManager.getSavedAnswer(userId,function(e,dat){
+			if(dat)	res.send(dat);
+			else res.send({"msg":"404"});
+		});
+	});
+
+
 
 
 	app.get('/level', async function(req, res) {
@@ -209,8 +251,30 @@ module.exports = function(app) {
 						heading_content:lvldat.qdata.text,
 						image_url:lvldat.qdata.content['image-url'],
 						hints_url:lvldat.qdata.content['hint-url'],
+
+						crossward_set:lvldat.qdata.set
 					}
-					res.render('qtypes/qcrossward',template_data);
+					// res.render('qtypes/qcrossward',template_data);
+					
+					
+					if(template_data.crossward_set=="A")
+					{
+						res.render('qtypes/qcrossward/sudoku1',template_data);
+					}
+					else if(template_data.crossward_set=="B")
+					{
+						res.render('qtypes/qcrossward/sudoku2',template_data);
+					}
+					else if(template_data.crossward_set=="C")
+					{
+						res.render('qtypes/qcrossward/sudoku3',template_data);
+					}
+					else
+					{
+						res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
+					}
+
+
 				}
 				else if(lvldat.qdata.type == 'image')
 				{
@@ -263,7 +327,50 @@ module.exports = function(app) {
 				}
 				else if(lvldat)
 				{
-					if(entered_answer==lvldat.qdata.answer.toLowerCase())
+					if(entered_answer=="sudoku")
+					{
+						let sudoku_set = lvldat.qdata.set;
+						let sudoku_answer = req.body.sudokuans;
+						let userId = req.session.user._id;
+
+						
+						/**
+						 * 1. SaveSudoku to Sudoku Collection
+						 * 
+						 * 2. Check Sudoku Answer
+						 *  	if it is correct then -> correct and update level. return msg:YES
+						 * 		else
+						 * 			return msg:NO
+						 * 	
+						 * 
+						 */
+						 sudokuManager.saveSudokuAnswer(userId,sudoku_set,sudoku_answer,function(e,output){
+							// res.send(output);
+
+							// res.send({"msg":"NO"});
+						 });
+
+						 const sudokuResult = sudokuManager.checkSudokuAnswer(sudoku_answer,sudoku_set);
+						 if(sudokuResult)
+						 {
+							const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
+							if(myout.result.ok == 1)
+							{
+								res.send({"msg":"YES"});
+							}
+							else
+							{
+								res.send({"msg":"Something Went Wrong try again!"});
+							}
+						 }
+						 else
+						 {
+							res.send({"msg":"NO"});
+						 }
+
+						
+					}
+					else if(entered_answer==lvldat.qdata.answer.toLowerCase())
 					{
 						const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
 						if(myout.result.ok == 1)
