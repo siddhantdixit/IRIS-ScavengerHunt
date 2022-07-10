@@ -124,8 +124,13 @@ function ekUpload(){
           xhr.open('POST', document.getElementById('file-upload-form').action, true);
           xhr.setRequestHeader('X-File-Name', file.name);
           xhr.setRequestHeader('X-File-Size', file.size);
-          xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-          xhr.send(file);
+          // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+
+          console.log(file);
+
+          const formdata = new FormData();
+          formdata.append('sudokufileupload',file);
+          xhr.send(formdata);
         } else {
           output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
         }
