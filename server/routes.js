@@ -8,6 +8,7 @@ const countries = require('./json/countries');
 const { url } = require('stylus');
 const multer = require('multer');
 const path = require('path');
+const mapchecker =  require('./model/mapchecker')
 
 module.exports = function(app) {
 
@@ -399,6 +400,9 @@ module.exports = function(app) {
 						if(answerUrl)
 						{
 							console.log(answerUrl);
+							const extractedText = await mapchecker.getTextFromImage(answerUrl);
+							
+							console.log(extractedText);
 							res.send({"msg":"YES"});
 							
 						}
