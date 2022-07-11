@@ -69,7 +69,7 @@ function printRecText(readResults) {
 
 
 const checkMapAnswer = async (answerUrl) => {
-    const extractedText = await getTextFromImage('https://lh4.googleusercontent.com/-4vxjUKC5gn0/T2jVlHNLW7I/AAAAAAAAC9Y/kBC0hNegxqk/s640/blogger-image--92703046.jpg');
+    const extractedText = await getTextFromImage(answerUrl);
     const correctAnswer = 
         "Don't be encumbered by history.\
     Go off and do something wonderful.\"\
