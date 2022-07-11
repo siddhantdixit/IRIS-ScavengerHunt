@@ -1,6 +1,7 @@
 
 const crypto 		= require('crypto');
 const moment 		= require('moment-timezone');
+const emailController = require('../model/emailController')
 
 let accounts = undefined;
 
@@ -34,7 +35,15 @@ module.exports.manualLogin = function(user, pass, callback)
 		}	else{
 			validatePassword(pass, o.pass, function(err, res) {
 				if (res){
-					callback(null, o);
+					if(o.verify)
+					{
+						callback(null, o);
+					}
+					else
+					{
+						callback('not-verified');
+					}
+
 				}	else{
 					callback('invalid-password');
 				}
@@ -42,6 +51,64 @@ module.exports.manualLogin = function(user, pass, callback)
 		}
 	});
 }
+
+module.exports.verifyAccount = function(token,callback)
+{
+	accounts.findOne({verificationToken:token},function(e,o){
+		if(o==null){
+			callback('user-not-found');
+		}
+		else
+		{
+			if(o.verify == true)
+			{
+				callback('user-already-verified');
+			}
+			else
+			{
+				accounts.updateOne(
+					{verificationToken:token},
+					{
+						$set:{
+								verify : true
+							}	
+					},
+					function(e,r){
+						callback(e,r);
+				});
+			}
+		}
+	});
+}
+
+
+module.exports.sendVerificationUrl = function(username,req,callback){
+
+	accounts.findOne({user:username},function(e,r){
+		if(e)
+		{
+			callback(404,"Email Not Found");
+		}
+		else
+		{
+
+			const tkn = r.verificationToken;
+			const email = r.email;
+
+
+			emailController.sendEmailVerificationLink(username,email,tkn,req, (response) => {
+				if (response == 200) {
+					callback(response,"Verification Email Successfully Sent!");
+				} else {
+					callback(response,"Failed to send verification email");
+				}
+			  });
+		}
+	});
+}
+
+
+
 
 module.exports.generateLoginKey = function(user, ipAddress, callback)
 {

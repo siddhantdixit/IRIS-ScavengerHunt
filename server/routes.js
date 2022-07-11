@@ -9,6 +9,9 @@ const { url } = require('stylus');
 const multer = require('multer');
 const path = require('path');
 const mapchecker =  require('./model/mapchecker')
+const crypto = require('crypto');
+const { send } = require('process');
+require('dotenv').config();
 
 module.exports = function(app) {
 
@@ -647,12 +650,18 @@ module.exports = function(app) {
 		if(member4)
 			memberlist.push(member4);
 
+
+		
+		const verificationtoken = crypto.randomBytes(120).toString('hex');
+
 		accounts.addNewAccount({
 			name 	: req.body['name'],
 			email 	: req.body['email'],
 			user 	: req.body['user'],
 			pass	: req.body['pass'],
 			country : req.body['country'],
+			verify: false,
+			verificationToken: verificationtoken,
 			members : memberlist
 		}, function(e,result){
 			if (e){
@@ -673,6 +682,44 @@ module.exports = function(app) {
 				});
 			}
 		});
+	});
+
+	app.get('/verify',function(req,res){
+
+		const passedToken =  req.query.token;
+		if(passedToken)
+		{
+			accounts.verifyAccount(passedToken,function(e,o){
+				if(e)
+				{
+					res.send({response:e,msg:"Something Went Wrong"});
+				}
+				else
+				{
+					res.send({response:e,msg:"Account Successfully Verified"});
+				}
+			});
+		}
+		else
+		{
+			res.send("No Token Specified");
+		}
+	});
+
+
+	app.get('/sendVerificationUrl',async function(req,res){
+
+		console.log(process.env.EMAILPASSWORD);
+		const encp = req.query.user;
+		if(encp)
+		{
+			const username = decodeURIComponent(encp);
+			accounts.sendVerificationUrl(username,req,function(e,o){
+				console.log(e);
+				console.log(o);
+				res.send("true");
+			});
+		}
 	});
 
 
