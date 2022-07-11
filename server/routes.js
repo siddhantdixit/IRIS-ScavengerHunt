@@ -220,6 +220,23 @@ module.exports = function(app) {
 	});
 
 
+	//Testing Route
+	app.get('/api/passLevel',async function(req,res){
+
+		const lvldat = await getLevelData(req,res);
+		const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
+		if(myout.result.ok == 1)
+		{
+			res.send({"msg":"YES"});
+		}
+		else
+		{
+			res.send({"msg":"Something Went Wrong try again!"});
+		}
+		
+		
+	});
+
 
 
 	app.get('/level', async function(req, res) {
@@ -297,6 +314,10 @@ module.exports = function(app) {
 					}
 					res.render('qtypes/qaudio',template_data);
 				}
+				else if(lvldat.qdata.type == 'qmap')
+				{
+					
+				}
 				else
 				{
 					res.status(404).send("Something went wrong! Report Issue <a href='https://github.com/siddhantdixit/IRIS-Project'>https://github.com/siddhantdixit/IRIS-Project</a>");
@@ -327,7 +348,7 @@ module.exports = function(app) {
 				}
 				else if(lvldat)
 				{
-					if(entered_answer=="sudoku")
+					if(lvldat.qdata.type=="crossward")
 					{
 						let sudoku_set = lvldat.qdata.set;
 						let sudoku_answer = req.body.sudokuans;
