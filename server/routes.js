@@ -400,11 +400,18 @@ module.exports = function(app) {
 						if(answerUrl)
 						{
 							console.log(answerUrl);
-							const extractedText = await mapchecker.getTextFromImage(answerUrl);
-							
-							console.log(extractedText);
-							res.send({"msg":"YES"});
-							
+							// Pass the image url to the mapchecker
+
+							const checkResult = await mapchecker.checkMapAnswer(answerUrl);
+							if(checkResult)
+							{
+								const myout = await makeAnswerCorrectAndUpdateLevel(lvldat.currentLvl,req,res);
+								res.send({"msg":"YES"});
+							}
+							else
+							{
+								res.send({"msg":"NO"});
+							}
 						}
 						else
 						{

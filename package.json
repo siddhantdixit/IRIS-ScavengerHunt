@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@azure/cognitiveservices-computervision": "^8.2.0",
     "@braitsch/express": "^1.1.8",
     "@tailwindcss/forms": "^0.3.4",
     "connect-mongo": "^4.6.0",
@@ -24,9 +25,9 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2",
+    "string-similarity": "^4.0.4",
     "stylus": "^0.54.8",
-    "tailwindcss": "^2.2.19",
-    "@azure/cognitiveservices-computervision": "^8.2.0"
+    "tailwindcss": "^2.2.19"
   },
   "engines": {
     "node": "16.10.0"

@@ -1,3 +1,5 @@
+const stringSimilarity = require("string-similarity");
+
 
 const sleep = require('util').promisify(setTimeout);
 const ComputerVisionClient = require('@azure/cognitiveservices-computervision').ComputerVisionClient;
@@ -61,11 +63,33 @@ function printRecText(readResults) {
         }
         else { console.log('No recognized text.'); }
     }
+    console.log(answerResult);
     return answerResult;
 }
 
 
+const checkMapAnswer = async (answerUrl) => {
+    const extractedText = await getTextFromImage('https://lh4.googleusercontent.com/-4vxjUKC5gn0/T2jVlHNLW7I/AAAAAAAAC9Y/kBC0hNegxqk/s640/blogger-image--92703046.jpg');
+    const correctAnswer = 
+        "Don't be encumbered by history.\
+    Go off and do something wonderful.\"\
+    Robert Noyce";
+
+    
+    let score = stringSimilarity.compareTwoStrings(correctAnswer,extractedText);
+    
+    console.log(score);
+    if(score>0.8)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+};
+
 
 module.exports = {
-    getTextFromImage
+    checkMapAnswer
 }
