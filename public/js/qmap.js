@@ -160,5 +160,29 @@ $("#qmapSubmit").click(function(){
     return;
   }
   
+  const fileImageUrl = window.location.origin + '/' + uploadedFileURL;
+
+  $.post("/level", {answer:fileImageUrl})
+    .done(function(result)
+    {
+      console.log(result.msg);
+      if(result.msg == "NO")
+      {
+        // alert("Wrong Answer");
+        $("#wrongpanelmodal").slideDown();
+        
+      }
+      else if(result.msg == "YES")
+      {
+        $("#rightpanelmodal").slideDown();
+      }
+    })
+    .fail(function(result){
+      console.log(result);
+    })
+    .always(function(){
+      $("#sidcont").show();
+      $("#myquestionspinner").hide();
+  });
   console.log(uploadedFileURL);
 });

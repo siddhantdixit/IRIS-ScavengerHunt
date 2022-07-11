@@ -18,8 +18,9 @@ module.exports = function(app) {
 	const storage = multer.diskStorage({
 		destination: './public/uploads/',
 		filename: function(req, file, cb){
-		
-		cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+			
+			let userId = req.session.user._id;
+			cb(null,file.fieldname + '-' + userId + '-' + Date.now() + path.extname(file.originalname));
 		}
 	});
 
@@ -391,6 +392,21 @@ module.exports = function(app) {
 						 }
 
 						
+					}
+					else if(lvldat.qdata.type=="qmap")
+					{
+						const answerUrl = req.body.answer;
+						if(answerUrl)
+						{
+							console.log(answerUrl);
+							res.send({"msg":"YES"});
+							
+						}
+						else
+						{
+							res.send({"msg":"NO"});
+						}
+
 					}
 					else if(entered_answer==lvldat.qdata.answer.toLowerCase())
 					{
