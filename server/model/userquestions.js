@@ -81,6 +81,7 @@ insertNewlyRegisteredUserDataSampleData = function(userId,callback)
 					done:false
 				},
 				2:{
+					//Intially All get Set A
 					question_id:ObjectId('61897a6371fd9577fc7e335f'),
 					done:false
 				},

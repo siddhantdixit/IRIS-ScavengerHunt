@@ -12,6 +12,7 @@ module.exports = function(app) {
 			require('./accounts').init(db);
 			require('./questions').init(db);
 			require('./userquestions').init(db);
+			require('./sudoku').init(db);
 			log('mongo :: connected to database :: "'+app.get('DB_NAME')+'"');
 		}
 	});

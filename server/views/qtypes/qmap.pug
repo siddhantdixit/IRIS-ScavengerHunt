@@ -1,0 +1,33 @@
+include components/mylevelbox.pug
+doctype html
+html(lang="en")
+    head
+        include components/header.pug
+        link(href='css/qmap.css' rel='stylesheet')
+        title Level #{current_level}
+    body
+        +levelbox(current_level)
+        div(id="mygamespinner",class="mygamespin")
+            .loadingspinner
+        div(id="mygamecomponents",style="display:none")
+            div(style='text-align:center; padding-top:225px;width:90%;margin:auto;')
+                p(style='font-weight:900;letter-spacing:1px;font-size:20px') Solve this map
+                br
+                div
+                    //- img(src=image_url alt='Nature' style='height: 300px;margin:auto;object-fit:contain')
+                    <div id="map" style="height:500px;width: 100%;" class="map"></div>
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false") 
+    script(src="js/google-map.js") 
+                br
+                br
+    include components/insertImageForm.pug
+    div(style="padding-bottom:100px")  
+        //- button(type="submit") Upload
+        <button style="margin:auto;display:table" id="qmapSubmit" class="flex-shrink-0 bg-purple-600 text-white text-base font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="button">
+            | Submit
+            <i class="bi bi-arrow-right"></i>
+        </button>
+include qmap/checkingmodal.pug
+include components/footer.pug
+script(src="js/qmap.js") 
+
