@@ -82,8 +82,6 @@ module.exports = function(app) {
 
 		let template_data = {
 			current_level:'4',
-			heading_content:'Feel the Random Image',
-			image_url:'https://source.unsplash.com/random/800x600'
 		}
 		res.render('qtypes/qmap',template_data);
 	});
@@ -316,7 +314,10 @@ module.exports = function(app) {
 				}
 				else if(lvldat.qdata.type == 'qmap')
 				{
-					
+					let template_data = {
+						current_level:'4',
+					}
+					res.render('qtypes/qmap',template_data);
 				}
 				else
 				{
