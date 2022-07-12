@@ -11,6 +11,7 @@ const path = require('path');
 const mapchecker =  require('./model/mapchecker')
 const crypto = require('crypto');
 const { send } = require('process');
+const { isBuffer } = require('util');
 require('dotenv').config();
 
 module.exports = function(app) {
@@ -677,7 +678,10 @@ module.exports = function(app) {
 					}
 					else
 					{
-						res.status(200).send('ok');
+						sendEmailVerification(req.body['user'],req,function(e,o){
+							if(e==200)	res.status(200).send('ok');
+							else res.status(400).send(error);
+						});
 					}
 				});
 			}
@@ -709,18 +713,28 @@ module.exports = function(app) {
 
 	app.get('/sendVerificationUrl',async function(req,res){
 
-		console.log(process.env.EMAILPASSWORD);
 		const encp = req.query.user;
+		sendEmailVerification(encp,req,function(e,o){
+			if(e==200)	res.send("true");
+			else	res.send("false");
+		});
+
+	});
+
+
+	async function sendEmailVerification(encp,req,callback)
+	{
 		if(encp)
 		{
 			const username = decodeURIComponent(encp);
 			accounts.sendVerificationUrl(username,req,function(e,o){
-				console.log(e);
-				console.log(o);
-				res.send("true");
+				callback(e,o);
 			});
 		}
-	});
+		else{
+			callback(false,null);
+		}
+	}
 
 
 	app.get('/resetQuestions', function (req,res) {

@@ -35,7 +35,15 @@ $(document).ready(function(){
 			$("#user-tf").blur();
 			$("#pass-tf").blur();
 			// $("input:text:visible:second").blur();
-			lv.showLoginError('Login Failure', 'Please check your username and/or password');
+			console.log(e);
+			if(e.responseText=='not-verified')
+			{
+				lv.showLoginError('Verify Email', 'Please verify your email address before login. Click Resend button below to send email again if not received.',true);
+			}
+			else
+			{
+				lv.showLoginError('Login Failure', 'Please check your username and/or password');
+			}
 		}
 	});
 
